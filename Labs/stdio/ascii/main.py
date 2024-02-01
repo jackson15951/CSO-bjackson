@@ -42,13 +42,11 @@ Line2: str = "  / @ @ \      *         ASCII Lab         *     (='.'=)\n"
 print(Line2)
 
 # FIXME8: print the third line of the graphics 59
-while len(name) != 27:
+while len(name) < 27:
     if len(name) < 26:
         name = " "+name     
     if len(name) < 27:
         name = name+" "     
-    else:
-        break
 
 Line3: str = " ( > 0 < )     *%s*   ( " '" )_( "' " )\n" %name
 print(Line3)
@@ -56,13 +54,11 @@ print(Line3)
 # FIXME9: use variable to print the fourth line 45
 syear: str = semester +" "+ year
 
-while len(syear) != 27:
+while len(syear) < 27:
     if len(syear) < 26:
         syear = " "+syear     
     if len(syear) < 27:
         syear = syear+" "     
-    else:
-        break
 
 Line4: str = "   >>x<<       *%s*\n" %syear
 print(Line4)
