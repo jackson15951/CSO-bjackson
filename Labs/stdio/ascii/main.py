@@ -42,6 +42,7 @@ Line2: str = "  / @ @ \      *         ASCII Lab         *     (='.'=)\n"
 print(Line2)
 
 # FIXME8: print the third line of the graphics 59
+#centers the text
 while len(name) < 27:
     if len(name) < 26:
         name = " "+name     
@@ -53,7 +54,7 @@ print(Line3)
 
 # FIXME9: use variable to print the fourth line 45
 syear: str = semester +" "+ year
-
+#centers the text
 while len(syear) < 27:
     if len(syear) < 26:
         syear = " "+syear     
