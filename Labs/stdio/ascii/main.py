@@ -11,7 +11,7 @@
     1. Use variables to store data/values
     2. Write a series of print statements to print the data/values to the console
 """
-#test
+
 print("Welcome to ASCII Art Program...\n")
 
 # FIXME3: prompt user to enter their name and store the value into name variable using input function
