@@ -41,31 +41,29 @@ print(line1)
 Line2: str = "  / @ @ \      *         ASCII Lab         *     (='.'=)\n"
 print(Line2)
 
-# FIXME8: print the third line of the graphics 59
-#centers the text
-while len(name) < 27:
-    if len(name) < 26:
-        name = " "+name     
-    if len(name) < 27:
-        name = name+" "     
+# FIXME8: print the third line of the graphics
+# centers the text
+#while len(name) < 27:
+#    if len(name) < 26:
+#        name = " "+name     
+#    if len(name) < 27:
+#        name = name+" "     
 
-Line3: str = " ( > 0 < )     *%s*   ( " '" )_( "' " )\n" %name
+name = name.center(27)
+
+Line3: str = ''' ( > 0 < )     *%s*   ( " )_( " )\n''' %name
 print(Line3)
 
-# FIXME9: use variable to print the fourth line 45
-syear: str = semester +" "+ year
-#centers the text
-while len(syear) < 27:
-    if len(syear) < 26:
-        syear = " "+syear     
-    if len(syear) < 27:
-        syear = syear+" "     
+# FIXME9: use variable to print the fourth line 
+syear: str = (semester +" "+ year).center(27)    
 
 Line4: str = "   >>x<<       *%s*\n" %syear
 print(Line4)
 
 # FIXME10: use variable to print the fifth line
-Line5: str = "  /  O  \      *         CSCI 111          *\n"
+csci = ("CSCI 111").center(27)
+
+Line5: str = "  /  O  \      *%s*\n" %csci
 print(Line5)
 
 # Note: You can add more lines or print more ASCII arts of your choice if you'd like...
