@@ -25,7 +25,7 @@ ________________________________________________________________________________
 
 # Assignments
 ## 1 - Std IO
-| program prints four playing cards |
-| met all the requirements |
-| ran and tested the program many times |
-| Give me a 100%! |
+| program prints four playing cards | |
+| met all the requirements | |
+| ran and tested the program many times | |
+| Give me a 100%! | |
