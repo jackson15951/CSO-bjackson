@@ -19,6 +19,13 @@ ________________________________________________________________________________
 | Name: | ASCII Art |
 | Description: | "ANSCII Art" |
 | Due Date: | 2/7/24 |
-| Status: | In Progress |
+| Status: | Complete |
 | Location: | https://github.com/jackson15951/CSO-bjackson/blob/main/Labs/stdio/ascii/main.py |
-| Notes: | In Progress|
+| Notes: | I think I'm done |
+
+# Assignments
+## 1 - Std IO
+| program prints four playing cards |
+| met all the requirements |
+| ran and tested the program many times |
+| Give me a 100%! |
