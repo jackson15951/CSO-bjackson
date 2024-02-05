@@ -20,9 +20,12 @@ cards = (card1, card2, card3, card4)
 print("Here are a few playing cards. Maybe I'll get around to creating a card game!")
 
 # Prints the cards in random order
-for i in range(4):
+for i in list(cards):
        print(random.choice(cards))
 
+# prints cards in order
+#for card in list(cards):
+#       print(card)
 
 '''
 The cards I used.
