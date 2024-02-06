@@ -27,7 +27,6 @@ oper = input()
 b = input()
 
 exper = a+oper+b 
-print(exper)
 print(eval(exper))
 
 
