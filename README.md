@@ -23,6 +23,18 @@ ________________________________________________________________________________
 | Location: | https://github.com/jackson15951/CSO-bjackson/blob/main/Labs/stdio/ascii/main.py |
 | Notes: | I think I'm done |
 
+## Lab #2
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "add-two-numbers" |
+| Due Date: | 2/6/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/stdio/ascii/math/main.py |
+| Notes: | I'm done |
+
+_______________________________________________________________________________________________________________
+
 # Assignments
 ## 1 - Std IO
 | stuff | more stuff |
