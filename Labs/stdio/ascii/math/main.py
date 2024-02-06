@@ -1,8 +1,8 @@
 """
 Math and Variables Lab
-By: FIXME
+By: Brandon Jackson
 CSCI 110 Lab
-Date: FIXME
+Date: 2/6/24
  
 Read and solve: Add Two Numbers - https://open.kattis.com/problems/addtwonumbers 
  
