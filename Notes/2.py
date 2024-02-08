@@ -20,3 +20,8 @@ lin3, lin4 = input().split('|')
 print(lin1+lin3,' ',lin2+lin4)
 
 '''
+
+n1, n2, n3 = input('three nums plz: ').split(' ')
+print(n1)
+print(n2)
+print(n3)
