@@ -17,7 +17,16 @@ Update README.md file with the status of the project and self-grade. (10 points)
 
 '''
 
+'''
+- get three sides for the triangle
+- tests if the three sides actually form a triangle
+- onverts it to float
+- Finds half the perimeter
+- the area
+- prints the area of the triangle
+- Prints the perimeter of the triangle
 
+'''
 
 
 import math
