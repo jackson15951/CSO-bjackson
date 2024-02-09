@@ -22,8 +22,16 @@ Update README.md file with the status of the project and self-grade. (10 points)
 
 import math
 
-# Prompt the user to enter the three sides of the triangle
-a, b, c, = input('Please input the three sides of the triangle: ').split(' ')
+while True: 
+    # Prompt the user to enter the three sides of the triangle
+    a, b, c, = input('Please input the three sides of the triangle: ').split(' ')
+    
+    # Test if 3 sides entered actually form a triangle.
+    if (a+b>=c) and (a+c>=b) and (b+c>=a):
+        print('This is a triangle')
+        break
+    else:
+        print('this is not a triangle')
 
 # Converts it to float
 a, b, c, = float(a),float(b),float(c)
@@ -39,10 +47,4 @@ print('The area of the triangle is ',area)
 
 # Prints the perimeter of the triangle
 print('The perimeter of the triangle is ',halfp*2)
-
-# Test if 3 sides entered actually form a triangle.
-if (a+b>=c) and (a+c>=b) and (b+c>=a):
-    print('This is a triangle')
-else:
-    print('this is not a triangle')
 
