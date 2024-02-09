@@ -21,12 +21,13 @@ print("time = %i hours and %i minutes" %(hours, minutes))
 
 '''
 
-
+'''
 a = input()
 oper = input()
 b = input()
 
 exper = a+oper+b 
 print(eval(exper))
-
-
+'''
+name = "name"
+print("Hi %s!" %name)
