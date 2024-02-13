@@ -1,0 +1,26 @@
+
+import turtle
+
+for i in range(6):
+    turtle.left((1/5)*360)
+    turtle.forward(20)
+    
+
+turtle.left(90)
+
+for i in range(6):
+    turtle.left((1/5)*360)
+    turtle.forward(20)
+    
+    
+turtle.left(90)
+
+for i in range(6):
+    turtle.left((1/5)*360)
+    turtle.forward(20)
+    
+turtle.left(90)
+
+for i in range(6):
+    turtle.left((1/5)*360)
+    turtle.forward(20)
