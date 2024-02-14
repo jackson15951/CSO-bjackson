@@ -317,19 +317,8 @@ for i in range(4):
             turtle.left(90)
         turtle.forward(len/3)
     
-    turtle.left(90)            
-'''    
-turtle.speed(50)
-
-
-def fac(len):             
-    for i in range(5):
-        turtle.forward(len)
-        turtle.left((4/5)*360)
-        if len > 5:
-            fac(len/2)
+    turtle.left(90) 
     
-
 def squ(len):         
     for i in range(4):
         turtle.forward(len/3)
@@ -342,6 +331,58 @@ def squ(len):
             turtle.forward(len/3)
         turtle.left(90)
         
+        
+        turtle.color('black')
+        turtle.begin_fill()
+        
+def squ(len):         
+    for i in range(4):
+        turtle.forward(len/3)
+        for i in range(2): 
+            if len > 20:
+                squ(len/3)  
+            for i in range(4):
+                turtle.forward(len/3)
+                turtle.left(90) 
+            turtle.forward(len/3)
+        turtle.left(90)
+           
+'''    
+#turtle.speed(50)
+
+turtle.tracer(0)
+
+turtle.penup()
+turtle.setposition(-150,-150)
+turtle.pendown()
+
+
+def fac(len):             
+    for i in range(5):
+        turtle.forward(len)
+        turtle.left((4/5)*360)
+        if len > 5:
+            fac(len/2)
+    
+
+def squ(len):         
+    for i in range(4):
+        turtle.color('black')
+        turtle.begin_fill()
+        turtle.forward(len/3)
+        for i in range(2): 
+            if len > 10:
+                squ(len/3)
+              
+            for i in range(4):
+                turtle.forward(len/3)
+                turtle.left(90) 
+            
+            turtle.forward(len/3)
+        turtle.left(90)
+        turtle.end_fill()
+        
+        
                 
         
 def tri(len):             
@@ -351,11 +392,17 @@ def tri(len):
         if len > 5:
             tri(len/2)                                
               
-#fac(60)
+turtle.pendown()
+
+fac(160)
 
 #tri(60)
 
-#squ(160)
+#squ(480)
+
+turtle.tracer(1)
+
+
 
 while True:
-    squ(160)
+    turtle.forward(10)
