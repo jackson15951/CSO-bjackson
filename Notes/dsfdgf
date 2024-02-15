@@ -346,9 +346,74 @@ def squ(len):
                 turtle.left(90) 
             turtle.forward(len/3)
         turtle.left(90)
-           
+      
+def squ(len):         
+    for i in range(4):
+        turtle.color('black')
+        turtle.begin_fill()
+        #turtle.forward(len/3)
+        for i in range(2): 
+
+              
+            for i in range(4):
+                turtle.forward(len/3)
+                turtle.left(90) 
+            
+            turtle.forward(len/3)
+            
+            if len > 20:
+                squ(len/3)
+                
+        turtle.forward(len/3)
+        turtle.left(90)
+        turtle.end_fill()      
+   
+def squ(len):         
+    for i in range(4):
+        turtle.color('black')
+        turtle.begin_fill()
+        for i in range(2): 
+            if len > 20:
+                squ(len/3)
+            for i in range(4):
+                turtle.forward(len/3)
+                turtle.left(90) 
+            turtle.forward(len/3)        
+        turtle.forward(len/3)
+        turtle.left(90)
+        turtle.end_fill()   
+
+def squ(len):
+    if len < 10:
+        turtle.color('black')
+        turtle.begin_fill()
+    
+        for i in range(4):
+            turtle.forward(len)
+            turtle.left(90) 
+        turtle.end_fill()
+        
+    else:         
+        for i in range(4):
+            
+            for i in range(2):
+                squ(len/3)
+                turtle.forward(len/3)        
+            
+            turtle.forward(len/3)
+            turtle.left(90)
+     
+     if len < 10:
+        #turtle.forward(len)
+        turtle.color('black')
+        turtle.begin_fill()
+        for i in range(4):
+            turtle.forward(len)
+            turtle.left(90)
+        turtle.end_fill()
+     
 '''    
-#turtle.speed(50)
+turtle.speed(100)
 
 turtle.tracer(0)
 
@@ -365,22 +430,45 @@ def fac(len):
             fac(len/2)
     
 
-def squ(len):         
-    for i in range(4):
-        turtle.color('black')
-        turtle.begin_fill()
-        turtle.forward(len/3)
-        for i in range(2): 
-            if len > 10:
-                squ(len/3)
-              
-            for i in range(4):
-                turtle.forward(len/3)
-                turtle.left(90) 
+def squ(len):            
+    for i in range(2):
             
-            turtle.forward(len/3)
-        turtle.left(90)
-        turtle.end_fill()
+        if len > 10:
+               
+            for i in range(4):
+                squ(len/3)
+                turtle.forward(len/3)
+                turtle.left(90)
+                #turtle.forward(len/3)
+            
+            
+            turtle.forward(len)
+            
+        if len < 10:
+            #turtle.forward(len)
+            turtle.color('black')
+            turtle.begin_fill()
+            for i in range(4):
+                turtle.forward(len)
+                turtle.left(90)
+            turtle.end_fill()
+            turtle.forward(len)
+            #turtle.left(90)
+        
+    
+
+
+
+        
+           
+      
+
+            
+            
+    
+            
+            
+        
         
         
                 
@@ -394,11 +482,12 @@ def tri(len):
               
 turtle.pendown()
 
-fac(160)
+#fac(160)
 
 #tri(60)
 
 #squ(480)
+squ(260)
 
 turtle.tracer(1)
 
