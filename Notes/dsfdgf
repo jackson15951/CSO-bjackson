@@ -1,244 +1,8 @@
 
 import turtle
 
+import random
 '''
-for i in range(6):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
-    
-
-turtle.left(90)
-
-for i in range(6):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
-    
-    
-turtle.left(90)
-
-for i in range(6):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
-    
-turtle.left(90)
-
-for i in range(6):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
-
-
-def fac(a,b):
-    if(a == 0):
-        turtle.forward(b)
-    else:
-        for i in range(10):
-            fac(a-1,b)
-            turtle.left((1/5)*360)
-
-
-fac(10,20)
-    
-
-
-for i in range(5):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
-
-
-turtle.left(((1/5)*180)*5)
-turtle.forward(20)
-   
-for i in range(5):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
- 
- 
-
-for i in range(5):
-    turtle.left((1/5)*360)
-    turtle.forward(20)
-    
-turtle.left((3/5)*360)
-
-
-
-for i in range(5):
-    turtle.left((1/5)*360)
-    turtle.forward(20)   
-
-
-def fac(len):
-    while True:
-        for i in range(5):
-            for i in range(5):
-                turtle.left((1/5)*360)
-                turtle.forward(len)
-                turtle.left((4/5)*360)
-                turtle.forward(len)
-                    
-            turtle.left((3/5)*360)
-        
-        turtle.left((4/5)*360)
-        turtle.forward(len)    
-        fac(len/2)
-        
-
-def fac(len,size):
-    while True:
-        for i in range(5):
-            for i in range(5):
-                turtle.forward(len)
-                turtle.left((1/5)*360)
-                turtle.forward(len)
-                turtle.left((4/5)*360)
-
-            turtle.left((1/5)*360)
-            turtle.forward(size)
-            turtle.left((1/5)*360)
-            turtle.forward(size)
-           
-              
-        fac(len/2,size)
-
-def fac(len,size):
-    while True:
-        for i in range(5):
-            for i in range(5):
-                for i in range(5):
-                    turtle.forward(len)
-                    turtle.left((1/5)*360)
-                    
-
-                turtle.left((1/5)*360)
-                turtle.forward(size)
-                turtle.left((1/5)*360)
-                turtle.forward(size)
-            
-            turtle.left((1/5)*360)
-            turtle.forward(size/2)
-            
-              
-        fac(len/2,size)
-
-
-def fac(len):
-    a = 60
-    while True:
-        for i in range(5):
-            for i in range(5):
-                turtle.forward(len)
-                turtle.left((1/5)*360)
-                
-
-            if len > 2:
-                turtle.left((2/5)*360)
-                fac(len/2)
-            else:
-                turtle.left((1/5)*360)
-                len = a  
-                  
-        if len > 2:
-            turtle.left((2/5)*360)
-            turtle.forward(len)
-            fac(len/2)
-        else:
-            turtle.left((1/5)*360)
-            len = a  
-
-
-def fac(len):
-    a = 60
-    while True:
-        for i in range(5):
-            turtle.left((1/5)*360)
-            turtle.forward(len)
-            
-            for i in range(5):
-                turtle.forward(len/2)
-                turtle.left((4/5)*360)
-                
-                if len > 10:
-                    fac(len/2)
-                    
-                len = a    
-
-
-for i in range(5):
-    turtle.left((4/5)*360)
-    turtle.forward(len)
-
-    for i in range(5):
-        turtle.forward(len/2)
-        turtle.left((1/5)*360)
-        
-        for i in range(5):            
-            turtle.left((4/5)*360)
-            turtle.forward(len/4)  
-                          
-            for i in range(5):
-                turtle.forward(len/8)
-                turtle.left((1/5)*360) 
-                  
-                for i in range(5):            
-                    turtle.left((4/5)*360)
-                    turtle.forward(len/16) 
-
-len = 60
-for i in range(5):
-    turtle.forward(len)
-    turtle.left((4/5)*360)
-
-    for i in range(5):
-        turtle.forward(len/2)
-        turtle.left((4/5)*360)
-        
-        for i in range(5):  
-            turtle.forward(len/4)           
-            turtle.left((4/5)*360)
-             
-                          
-            for i in range(5):
-                turtle.forward(len/8)
-                turtle.left((4/5)*360) 
-                  
-                for i in range(5):  
-                    turtle.forward(len/16)          
-                    turtle.left((4/5)*360)
-   
-    
-    
-def squ(len):             
-    for i in range(3):
-        if len > 10:
-            squ(len/3)
-            
-        turtle.forward(len)
-        turtle.left(90)
-        turtle.forward(len)
-        turtle.left(90)
-        
-        
-            
-        for i in range(4):
-            
-            turtle.left(90)
-            turtle.forward(len)
-            
-        
-        
-        turtle.left(90)
-        turtle.forward(len)
-        
-        
-            
-        for i in range(4):
-            
-            turtle.forward(len)
-            turtle.left(90) 
-         
-         if len > 10:
-            squ(len/3)   
-         
          
 def squ(len): 
     turtle.forward(len)
@@ -461,7 +225,10 @@ def squ(len):
 '''    
 turtle.speed(100)
 
-turtle.tracer(1)
+turtle.tracer(0)
+
+turtle.colormode(255)
+turtle.color('black')
 
 turtle.penup()
 turtle.setposition(-150,-150)
@@ -474,33 +241,132 @@ def fac(len):
         turtle.left((4/5)*360)
         if len > 5:
             fac(len/2)
-            
 
-def squ(len):
-    turtle.color('black')         
+            
+'''
+
+def squ(len):    
     for i in range(4):
-        for i in range(2):
-            #turtle.color('black')
+        
+        for a in range(2):
+
             turtle.begin_fill() 
-            if len > 5:
+            if len > 10:
                 squ(len/3)
             
-                #turtle.color('black')
-                #turtle.begin_fill()
-            
-                for i in range(4):
-                    turtle.forward(len)
-                    turtle.left(90)
-            
-                turtle.end_fill()
+            for s in range(4):
+                turtle.forward(len)
+                turtle.left(90)
+        
+            turtle.end_fill()
             turtle.forward(len)
             
         turtle.forward(len)
         turtle.left(90)
 
+
+def squ1(len):            
+    for i in range(2):
+            
+        if len > 10:
+               
+            for t in range(4):
+                squ(len/3)
+                turtle.forward(len/3)
+                turtle.left(90)
+                
+            
+            
+            turtle.forward(len)
+            
+        if len < 10:
+            
+            turtle.color('black')
+            turtle.begin_fill()
+            
+            for t in range(4):
+                turtle.forward(len)
+                turtle.left(90)
+                
+            turtle.end_fill()
+            turtle.forward(len)
+            
+
+
+
+def s(n, l):
+
+    if n == 0: # stop conditions
+
+        # draw filled rectangle
+
+        turtle.color('black')
+        turtle.begin_fill()
+        for _ in range (4):
+            turtle.forward(l)
+            turtle.left(90)
+        turtle.end_fill()
+
+    else: # recursion
+
+        # around center point create 8 smalles rectangles.
+        # create two rectangles on every side 
+        # so you have to repeat it four times
+
+        for _ in range(4):
+            # first rectangle
+            s(n-1, l/3)    
+            turtle.forward(l/3)
+
+            # second rectangle
+            s(n-1, l/3)    
+            turtle.forward(l/3)
+
+            # go to next corner
+            turtle.forward(l/3)
+            turtle.left(90)
+
+        # update screen
+        turtle.update()
+        
+'''        
+
+def s(n, l):
+    
+    #turtle.begin_fill()
+    if n == 0: # stop conditions
+
+        # draw filled rectangle
+        turtle.begin_fill()
+        for _ in range (4):
+            turtle.forward(l*3)
+            turtle.left(90)
+        turtle.end_fill()
+
+    else: # recursion
+
+        # around center point create 8 smalles rectangles.
+        # create two rectangles on every side 
+        # so you have to repeat it four times
+        
+        for _ in range(4):
+            # first rectangle
+            (s(n-1, l/3) ,turtle.forward(l))
+            
+            # second rectangle
+            (s(n-1, l/3) ,turtle.forward(l))
+            
+            # go to next corner
+            turtle.forward(l)
+            turtle.left(90)
+
+        # update screen
+        turtle.update()
+
+        
+        
                       
 def tri(len): 
-    turtle.color('black')
     turtle.begin_fill()            
     for i in range(3):
         turtle.forward(len)
@@ -510,17 +376,21 @@ def tri(len):
             tri(len/2)                                
               
               
-
 #fac(260)
 
 #tri(400)
 
 #squ(480)
-squ(160)
 
-turtle.tracer(1)
+#squ(160)
 
+#s(4, 160)
 
+#turtle.tracer(1)
 
 while True:
-    turtle.forward(10)
+    turtle.color(tuple(random.randint(0, 255) for _ in range(3)))
+    s(4, 160)
+    turtle.color('white')
+    s(3, 160)
+    turtle.clear()
