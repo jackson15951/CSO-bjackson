@@ -222,28 +222,6 @@ def squ(len):
         turtle.forward(len)
         turtle.left(90)     
      
-'''    
-turtle.speed(100)
-
-turtle.tracer(0)
-
-turtle.colormode(255)
-turtle.color('black')
-
-turtle.penup()
-turtle.setposition(-150,-150)
-turtle.pendown()
-
-
-def fac(len):             
-    for i in range(5):
-        turtle.forward(len)
-        turtle.left((4/5)*360)
-        if len > 5:
-            fac(len/2)
-
-            
-'''
 
 def squ(len):    
     for i in range(4):
@@ -329,11 +307,42 @@ def s(n, l):
         # update screen
         turtle.update()
         
-'''        
+''' 
+
+       
+#turtle.speed(10)
+
+turtle.tracer(0)
+
+turtle.colormode(255)
+turtle.color('black')
+
+turtle.penup()
+turtle.setposition(-150,-150)
+turtle.pendown()
+
+
+def fac(len):             
+    for i in range(5):
+        turtle.forward(len)
+        turtle.left((4/5)*360)
+        if len > 5:
+            fac(len/2) ,turtle.update()
+    #turtle.update()
+
+                      
+def tri(len): 
+    turtle.begin_fill()            
+    for i in range(3):
+        turtle.forward(len)
+        turtle.left((1/3)*360)
+        if len > 10:
+            turtle.end_fill()
+            tri(len/2)                                
+
+
 
 def s(n, l):
-    
-    #turtle.begin_fill()
     if n == 0: # stop conditions
 
         # draw filled rectangle
@@ -342,7 +351,7 @@ def s(n, l):
             turtle.forward(l*3)
             turtle.left(90)
         turtle.end_fill()
-
+        
     else: # recursion
 
         # around center point create 8 smalles rectangles.
@@ -364,18 +373,10 @@ def s(n, l):
         turtle.update()
 
         
-        
-                      
-def tri(len): 
-    turtle.begin_fill()            
-    for i in range(3):
-        turtle.forward(len)
-        turtle.left((1/3)*360)
-        if len > 10:
-            turtle.end_fill()
-            tri(len/2)                                
-              
-              
+         
+
+
+
 #fac(260)
 
 #tri(400)
