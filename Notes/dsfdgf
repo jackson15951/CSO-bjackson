@@ -318,7 +318,7 @@ turtle.colormode(255)
 turtle.color('black')
 
 turtle.penup()
-turtle.setposition(-150,-150)
+turtle.setposition(-150,0)
 turtle.pendown()
 
 
@@ -327,7 +327,7 @@ def fac(len):
         turtle.forward(len)
         turtle.left((4/5)*360)
         if len > 5:
-            fac(len/2) ,turtle.update()
+            fac(len/2) ,turtle.update() # type: ignore
     #turtle.update()
 
                       
@@ -360,10 +360,10 @@ def s(n, l):
         
         for _ in range(4):
             # first rectangle
-            (s(n-1, l/3) ,turtle.forward(l))
+            (s(n-1, l/3) ,turtle.forward(l)) 
             
             # second rectangle
-            (s(n-1, l/3) ,turtle.forward(l))
+            (s(n-1, l/3) ,turtle.forward(l)) 
             
             # go to next corner
             turtle.forward(l)
@@ -372,12 +372,12 @@ def s(n, l):
         # update screen
         turtle.update()
 
-        
-         
 
 
 
-#fac(260)
+
+
+fac(260)
 
 #tri(400)
 
@@ -385,13 +385,15 @@ def s(n, l):
 
 #squ(160)
 
-#s(4, 160)
+s(4, 160)
 
 #turtle.tracer(1)
 
+'''
 while True:
-    turtle.color(tuple(random.randint(0, 255) for _ in range(3)))
+    turtle.color(tuple(random.randint(0, 255) for _ in range(3))) 
     s(4, 160)
     turtle.color('white')
     s(3, 160)
     turtle.clear()
+'''
