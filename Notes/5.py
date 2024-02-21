@@ -26,6 +26,3 @@ def isEven(num):
 
 print(isEven(num))
 
-
-
-print(isPositive(num))
