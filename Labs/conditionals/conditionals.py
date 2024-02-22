@@ -34,6 +34,7 @@ def isEven(num):
     even = False
     # FIXME2 #fixed#
     # determine whether the num is even or odd
+    
     if divmod(num,2)[1] == 0:
         even = True
     # return True for even; False otherwise

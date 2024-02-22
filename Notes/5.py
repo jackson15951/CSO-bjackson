@@ -12,7 +12,7 @@ def main():
     
 main()
 
-'''
+
 
 num = 4
 def isEven(num):
@@ -26,3 +26,26 @@ def isEven(num):
 
 print(isEven(num))
 
+
+from uri_template import Variable
+
+
+def sprite2():
+    print('hi')
+
+sprite1 = "hello"
+
+px = '1'
+
+
+print(Variable('sprite'+px))
+
+''' 
+row1 = ('1a','2a','3a','4a','5a','6a','7a') 
+
+x = (50, 100, 150, 200, 250, 300, 350)
+
+a = -1
+for i in list(x):
+    a = a +1
+    print(row1[a])
