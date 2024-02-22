@@ -17,7 +17,7 @@ HEIGHT = 450
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
 COLORS = (BLACK, WHITE)
-sprcolor = BLACK
+#sprcolor = BLACK
 
 # Stuff
 xcords = (50, 100, 150, 200, 250, 300, 350)
@@ -26,7 +26,7 @@ contwin = 0
 
 
 #functions
-def run_game(sprite_group, row_group):
+def run_game(row_group):
     # Allows you to exit the game
     exit = True 
     while exit:                
@@ -37,7 +37,7 @@ def run_game(sprite_group, row_group):
         
         # Updates sprites and checks win condition
         did_win = False 
-        for i in list(sprite_group):
+        for i in list(row_group):
             if win(i.update(events)):
                 did_win = True
                   
@@ -50,8 +50,14 @@ def run_game(sprite_group, row_group):
             won.draw(screen)
             screen.blit(textwin , (150+10, 250+10))  
         
+        # Updates screen
         pygame.display.update()
 
+def random_color(true_or_false):
+    if true_or_false == True:
+        return random.choice(COLORS)
+    else:
+        return BLACK
 
 def change(sprite):
     #change color
@@ -121,7 +127,7 @@ class Sprite1(pygame.sprite.Sprite): # This is the random game option
             if event.type == pygame.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
                     # random colors game
-                    main2()
+                    game(True)
 
 
 class Sprite2(pygame.sprite.Sprite): # This is the normal game option
@@ -140,7 +146,7 @@ class Sprite2(pygame.sprite.Sprite): # This is the normal game option
             if event.type == pygame.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
                     # normal game
-                    main1()
+                    game(False)
 
 
 class ClickableSprite(pygame.sprite.Sprite):
@@ -196,117 +202,55 @@ pygame.display.set_caption("Game Thing")
 smallfont = pygame.font.SysFont('Corbel',25) 
 
 # text
-text1 = smallfont.render('Random' , True , WHITE)
-text2 = smallfont.render('Norm' , True , WHITE)
+text_random = smallfont.render('Random' , True , WHITE)
+text_norm = smallfont.render('Normal' , True , WHITE)
+textwin = smallfont.render('You Won!' , True , WHITE)
 
+
+# sprites stuff
 # sprites for game options
-sprrandom = Sprite1(pygame.Surface((100, 40)), 50, 250)
-sprnorm = Sprite2(pygame.Surface((100, 40)), 50, 300)
+sprrandom = Sprite1(pygame.Surface((100, 40)), 50, 250) # random
+sprnorm = Sprite2(pygame.Surface((100, 40)), 50, 300) # normal
 sprites_list = pygame.sprite.Group(sprrandom, sprnorm)
 
 # sprites for, if won
 winsprite = WinSprite(pygame.Surface((140, 40)), 150, 250)
 won = pygame.sprite.Group(winsprite)
-textwin = smallfont.render('You Won!' , True , WHITE)
 
-
-# Main2 
-def main2(): 
-    # sprites stuff 
+# Game sprites
+def sprrows(row, true_or_false):
     sprsize = (40, 40)
-            
+    ycord = ycords[row]
+    sprite1 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycord, (random_color(true_or_false)))
+    sprite2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycord, (random_color(true_or_false)))
+    sprite3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycord, (random_color(true_or_false)))
+    sprite4 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycord, (random_color(true_or_false)))
+    sprite5 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycord, (random_color(true_or_false)))
+    sprite6 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycord, (random_color(true_or_false)))
+    sprite7 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycord, (random_color(true_or_false)))
+    return sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7
+
+
+# main something
+def game(true_or_false):
     #row1
-    sprite1 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[0], (random.choice(COLORS)))
-    sprite2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[0], (random.choice(COLORS)))
-    sprite3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[0], (random.choice(COLORS)))
-    sprite4 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[0], (random.choice(COLORS)))
-    sprite5 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[0], (random.choice(COLORS)))
-    sprite6 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[0], (random.choice(COLORS)))
-    sprite7 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[0], (random.choice(COLORS)))
     global row1
-    row1 = (sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7)
+    row1 = (sprrows(0, true_or_false))
 
     #row2
-    sprite1_2 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[1], (random.choice(COLORS)))
-    sprite2_2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[1], (random.choice(COLORS)))
-    sprite3_2 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[1], (random.choice(COLORS)))
-    sprite4_2 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[1], (random.choice(COLORS)))
-    sprite5_2 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[1], (random.choice(COLORS)))
-    sprite6_2 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[1], (random.choice(COLORS)))
-    sprite7_2 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[1], (random.choice(COLORS)))
     global row2
-    row2 = (sprite1_2, sprite2_2, sprite3_2, sprite4_2, sprite5_2, sprite6_2, sprite7_2)
+    row2 = (sprrows(1, true_or_false))
 
     #row3
-    sprite1_3 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[2], (random.choice(COLORS)))
-    sprite2_3 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[2], (random.choice(COLORS)))
-    sprite3_3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[2], (random.choice(COLORS)))
-    sprite4_3 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[2], (random.choice(COLORS)))
-    sprite5_3 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[2], (random.choice(COLORS)))
-    sprite6_3 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[2], (random.choice(COLORS)))
-    sprite7_3 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[2], (random.choice(COLORS)))
     global row3
-    row3 = (sprite1_3, sprite2_3, sprite3_3, sprite4_3, sprite5_3, sprite6_3, sprite7_3)
-    
-    # most sprites
-    sprite_group = (sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7, 
-                 sprite1_2, sprite2_2, sprite3_2, sprite4_2, sprite5_2, sprite6_2, sprite7_2,
-                 sprite1_3, sprite2_3, sprite3_3, sprite4_3, sprite5_3, sprite6_3, sprite7_3)
-
-    # group
-    row_group = pygame.sprite.Group(row1, row2, row3)
-    
-    run_game(sprite_group, row_group)
-
-
-def main1():
-    # sprites stuff 
-    sprsize = (40, 40)
-            
-    #row1
-    sprite1 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[0], (sprcolor))
-    sprite2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[0], (sprcolor))
-    sprite3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[0], (sprcolor))
-    sprite4 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[0], (sprcolor))
-    sprite5 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[0], (sprcolor))
-    sprite6 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[0], (sprcolor))
-    sprite7 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[0], (sprcolor))
-    global row1
-    row1 = (sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7)
-
-    #row2
-    sprite1_2 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[1], (sprcolor))
-    sprite2_2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[1], (sprcolor))
-    sprite3_2 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[1], (sprcolor))
-    sprite4_2 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[1], (sprcolor))
-    sprite5_2 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[1], (sprcolor))
-    sprite6_2 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[1], (sprcolor))
-    sprite7_2 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[1], (sprcolor))
-    global row2
-    row2 = (sprite1_2, sprite2_2, sprite3_2, sprite4_2, sprite5_2, sprite6_2, sprite7_2)
-
-    #row3
-    sprite1_3 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[2], (sprcolor))
-    sprite2_3 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[2], (sprcolor))
-    sprite3_3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[2], (sprcolor))
-    sprite4_3 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[2], (sprcolor))
-    sprite5_3 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[2], (sprcolor))
-    sprite6_3 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[2], (sprcolor))
-    sprite7_3 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[2], (sprcolor))
-    global row3
-    row3 = (sprite1_3, sprite2_3, sprite3_3, sprite4_3, sprite5_3, sprite6_3, sprite7_3)
-    
-    # most sprites
-    sprite_group = (sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7, 
-                 sprite1_2, sprite2_2, sprite3_2, sprite4_2, sprite5_2, sprite6_2, sprite7_2,
-                 sprite1_3, sprite2_3, sprite3_3, sprite4_3, sprite5_3, sprite6_3, sprite7_3)
+    row3 = (sprrows(2, true_or_false))
     
     # group
     row_group = pygame.sprite.Group(row1, row2, row3)
     
-    run_game(sprite_group, row_group)
+    run_game(row_group)
 
-
+# The real main
 # Allows you to exit the game
 exit = True 
 while exit: 
@@ -321,11 +265,12 @@ while exit:
     sprites_list.update(events)
     
     # Adds text to the screen
-    screen.blit(text1 , (WIDTH/7,HEIGHT/2+35)) 
-    screen.blit(text2 , (WIDTH/7,HEIGHT/2+85))
+    screen.blit(text_random , (WIDTH/7,HEIGHT/2+35)) 
+    screen.blit(text_norm , (WIDTH/7,HEIGHT/2+85))
 
     pygame.display.update()
  
 
 pygame.quit() 
+ 
  

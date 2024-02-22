@@ -3,7 +3,6 @@ This is close to how I originally had it, before I tried to add the win function
 cleaned it up a little bit and added more comments
 
 '''
-
 import pygame
   
 # GLOBAL VARIABLES 
@@ -80,6 +79,11 @@ class ClickableSprite(pygame.sprite.Sprite):
                     # bottom row 
                     if y == 150:
                         self_neighbor(x, row3, aval)
+                        
+        # finds and reports it's current color
+        color = self.image.get_at((0, 0))
+        print(color)
+        return color
 
 
 # init
@@ -94,37 +98,25 @@ pygame.display.set_caption("Game Thing")
 sprsize = (40, 40)
 
 # sets size, x, y, then initials starting color
-# naming scheme --> sprite4_2 --> Column 4, row 2. 
+def sprrows(row):
+    ycord = ycords[row-1]
+    sprite1 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycord, (sprcolor))
+    sprite2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycord, (sprcolor))
+    sprite3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycord, (sprcolor))
+    sprite4 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycord, (sprcolor))
+    sprite5 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycord, (sprcolor))
+    sprite6 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycord, (sprcolor))
+    sprite7 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycord, (sprcolor))
+    return sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7
 
 #row1
-sprite1 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[0], (sprcolor))
-sprite2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[0], (sprcolor))
-sprite3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[0], (sprcolor))
-sprite4 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[0], (sprcolor))
-sprite5 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[0], (sprcolor))
-sprite6 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[0], (sprcolor))
-sprite7 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[0], (sprcolor))
-row1 = (sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7)
+row1 = (sprrows(1))
 
 #row2
-sprite1_2 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[1], (sprcolor))
-sprite2_2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[1], (sprcolor))
-sprite3_2 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[1], (sprcolor))
-sprite4_2 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[1], (sprcolor))
-sprite5_2 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[1], (sprcolor))
-sprite6_2 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[1], (sprcolor))
-sprite7_2 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[1], (sprcolor))
-row2 = (sprite1_2, sprite2_2, sprite3_2, sprite4_2, sprite5_2, sprite6_2, sprite7_2)
+row2 = (sprrows(2))
 
 #row3
-sprite1_3 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycords[2], (sprcolor))
-sprite2_3 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycords[2], (sprcolor))
-sprite3_3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycords[2], (sprcolor))
-sprite4_3 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycords[2], (sprcolor))
-sprite5_3 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycords[2], (sprcolor))
-sprite6_3 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycords[2], (sprcolor))
-sprite7_3 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycords[2], (sprcolor))
-row3 = (sprite1_3, sprite2_3, sprite3_3, sprite4_3, sprite5_3, sprite6_3, sprite7_3)
+row3 = (sprrows(3))
 
 # group
 group = pygame.sprite.Group(row1, row2, row3)
