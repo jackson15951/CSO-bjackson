@@ -16,7 +16,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 COLORS = (BLACK, WHITE)
 
-sprcolor = BLACK
+sprcolor = BLACK 
 
 # Stuff
 xcords = (50, 100, 150, 200, 250, 300, 350)

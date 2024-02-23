@@ -6,7 +6,7 @@ it's still ugle.
 
 import pygame
 import random 
-  
+
 # GLOBAL VARIABLES 
 COLOR = (255, 100, 98) 
 SURFACE_COLOR = (100, 100, 255) 
@@ -231,7 +231,7 @@ def sprrows(row, true_or_false):
     return sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7
 
 
-# main something
+# game something
 def game(true_or_false):
     #row1
     global row1
