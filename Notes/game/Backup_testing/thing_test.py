@@ -12,11 +12,6 @@ ycords = (50, 100, 150)
 contwin = 0
 
 # Functions
-def img(Img):
-    x = (2)
-    y = (1)
-    screen.blit(Img, (x,y))
-
 def random_color(randomc):
     return random.choice((BLACK, WHITE)) if randomc else BLACK
 
@@ -127,7 +122,8 @@ size = (440, 450)
 screen = pygame.display.set_mode(size) 
 pygame.display.set_caption("Game Thing")
 
-win_img = pygame.image.load('win_img.png')
+win_img = pygame.image.load('/Users/brandonjackson/cs110/CSO-bjackson/Notes/game/Backup_testing/win_img.png')
+win_img = pygame.transform.scale(win_img, (360,150))
 
 # defining a font  
 smallfont = pygame.font.SysFont('Corbel',25) 
@@ -176,8 +172,8 @@ def main():
         sprites_list.draw(screen)
         sprites_list.update(events)
         
-        # Adds text to the screen 
-        img(win_img)      
+        # Adds text to the screen    
+        screen.blit(win_img, (39,80))  
         screen.blit(text_random , (63,260)) 
         screen.blit(text_norm , (63,310))
         screen.blit(text_howtoplay , (170,30))
