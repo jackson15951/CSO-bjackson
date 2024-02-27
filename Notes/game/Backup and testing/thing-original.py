@@ -23,8 +23,7 @@ ycords = (50, 100, 150)
 # Functions
 def change(sprite):
     # Change color
-    color = BLACK if sprite.image.get_at(
-        (0, 0)) != BLACK else WHITE
+    color = BLACK if sprite.image.get_at((0, 0)) != BLACK else WHITE
     sprite.image.fill(color)
 
 def self_neighbor(x, row, aval):

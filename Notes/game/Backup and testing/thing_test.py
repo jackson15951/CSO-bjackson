@@ -2,6 +2,7 @@ import pygame
 import random 
 
 # GLOBAL VARIABLES 
+COLOR = (255, 100, 98) 
 SURFACE_COLOR = (100, 100, 255) 
 WIDTH = 440
 HEIGHT = 450
@@ -15,7 +16,6 @@ COLORS = (BLACK, WHITE)
 xcords = (50, 100, 150, 200, 250, 300, 350)
 ycords = (50, 100, 150)
 contwin = 0
-game_exit = True
 
 #functions
 def random_color(randomc):
@@ -25,13 +25,13 @@ def run_game(row_group):
     # Allows you to exit the game
     global menu_exit
     menu_exit = True 
-    global game_exit
+    global exit
     while menu_exit:                
         events = pygame.event.get()
         for event in events: 
             if event.type == pygame.QUIT:
                 menu_exit = False
-                game_exit = False
+                exit = False
         
         # Updates sprites and checks win condition
         did_win = False
@@ -142,7 +142,6 @@ class ClickableSprite(pygame.sprite.Sprite):
         print(color)
         return color
 
-
 # init
 pygame.init() 
 
@@ -192,7 +191,7 @@ def game(true_or_false):
 
 def main():
     global rows
-    global game_exit
+    global exit
     exit = True
     while exit: 
         events = pygame.event.get()
@@ -211,11 +210,10 @@ def main():
         screen.blit(text_howtoplay , (170,30))
         screen.blit(text_howto , (50,60))
         
-        if game_exit == False:
+        if exit == False:
             screen.fill(SURFACE_COLOR)
-            exit = False
 
         pygame.display.update()
         
 main()
-pygame.quit() 
+pygame.quit()

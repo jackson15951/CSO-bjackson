@@ -87,8 +87,8 @@ def self_neighbor(x, row, aval):
     if x != 50:
         change(row[aval-1])
     if x != 350:
-        change(row[aval+1])
-        
+        change(row[aval+1])      
+               
                
 # Object class 
 class ClickableSprite(pygame.sprite.Sprite):
@@ -176,18 +176,8 @@ def sprrows(row, true_or_false):
 
 # game something
 def game(true_or_false):
-    global mod_normal
-    #row1
-    global row1
-    row1 = (sprrows(0, true_or_false))
-
-    #row2
-    global row2
-    row2 = (sprrows(1, true_or_false))
-
-    #row3
-    global row3
-    row3 = (sprrows(2, true_or_false))
+    global row1,row2,row3
+    row1,row2,row3 = [(sprrows(ro, true_or_false)) for ro in range(3)]
     
     run_game(pygame.sprite.Group(row1, row2, row3, sprmenu))
 
@@ -211,10 +201,6 @@ def main():
         screen.blit(text_norm , (WIDTH/7,HEIGHT/2+85))
         screen.blit(text_howtoplay , (170,30))
         screen.blit(text_howto , (50,60))
-        
-        if game_exit == False:
-            screen.fill(SURFACE_COLOR)
-            exit = False
 
         pygame.display.update()
         
