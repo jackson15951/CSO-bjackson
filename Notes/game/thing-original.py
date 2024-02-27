@@ -1,7 +1,6 @@
 '''
 This is close to how I originally had it, before I tried to add the win function and the main menu with the random option
 cleaned it up a little bit and added more comments
-
 '''
 import pygame
   
@@ -15,7 +14,6 @@ HEIGHT = 450
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
 COLORS = (BLACK, WHITE)
-
 sprcolor = BLACK 
 
 # Stuff
@@ -43,7 +41,6 @@ def self_neighbor(x, row, aval):
         change(row[aval-1])
     if x != 350:
         change(row[aval+1])
-
 
 # Object class 
 class ClickableSprite(pygame.sprite.Sprite):
@@ -100,14 +97,8 @@ sprsize = (40, 40)
 # sets size, x, y, then initials starting color
 def sprrows(row):
     ycord = ycords[row-1]
-    sprite1 = ClickableSprite(pygame.Surface(sprsize), xcords[0], ycord, (sprcolor))
-    sprite2 = ClickableSprite(pygame.Surface(sprsize), xcords[1], ycord, (sprcolor))
-    sprite3 = ClickableSprite(pygame.Surface(sprsize), xcords[2], ycord, (sprcolor))
-    sprite4 = ClickableSprite(pygame.Surface(sprsize), xcords[3], ycord, (sprcolor))
-    sprite5 = ClickableSprite(pygame.Surface(sprsize), xcords[4], ycord, (sprcolor))
-    sprite6 = ClickableSprite(pygame.Surface(sprsize), xcords[5], ycord, (sprcolor))
-    sprite7 = ClickableSprite(pygame.Surface(sprsize), xcords[6], ycord, (sprcolor))
-    return sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7
+    sprites = [ClickableSprite(pygame.Surface(sprsize), xcords[num], ycord, (sprcolor)) for num in range(7)]
+    return sprites
 
 #row1
 row1 = (sprrows(1))
@@ -138,7 +129,5 @@ def main():
         
         pygame.display.update() 
 
-main()
-    
+main()  
 pygame.quit()
-
