@@ -131,3 +131,5 @@ def main():
 main()  
 pygame.quit()
 
+        #size = (740, 550) #(440, 450)
+        #screen = pygame.display.set_mode(size)

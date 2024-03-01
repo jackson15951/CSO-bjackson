@@ -7,19 +7,15 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # Stuff
-xcords = (50, 100, 150, 200, 250, 300, 350)
-ycords = (50, 100, 150)
+xcords = [50, 100, 150, 200, 250, 300, 350]
+ycords = [50, 100, 150]
 contwin = 0
 
 # Functions
-def random_color(randomc):
-    return random.choice((BLACK, WHITE)) if randomc else BLACK
-
 def run_game(row_group):
     # Allows you to exit the game
-    global menu_exit
+    global menu_exit, exit
     menu_exit = True 
-    global exit
     while menu_exit:                
         events = pygame.event.get()
         for event in events: 
@@ -50,13 +46,12 @@ def run_game(row_group):
         pygame.display.update()
 
 def change(sprite):
-    #change color
+    # change color
     color = BLACK if sprite.image.get_at((0, 0)) != BLACK else WHITE
     sprite.image.fill(color)
 
 def win(group):
-    # checks to see if you won
-    # if all 21 sprites are white
+    # if all sprites are white you won
     global contwin 
     if group == WHITE:
         if contwin < 21: contwin = contwin + 1
@@ -64,16 +59,20 @@ def win(group):
         if contwin == 21: return True
     else: contwin = 0
 
-def self_neighbor(x, row): # Changes the colors of its self and its neighbors
+def self_neighbor(x,y): # Changes the colors of its self and its neighbors
+    global rows
     aval = xcords.index(x)
-    change(row[aval]) # its self
+    bval = ycords.index(y)
+    change(rows[bval][aval]) # its self
     # Find neighbors on Y axis
-    if row == rows[0] or row == rows[2]: change(rows[1][aval])
-    if row == rows[1]: change(rows[0][aval]), change(rows[2][aval])
+    if y != 50: change(rows[bval-1][aval])
+    if y != ycords[-1]: change(rows[bval+1][aval])
     # Find neighbors on X axis
-    if x != 50: change(row[aval-1])
-    if x != 350: change(row[aval+1])
-        
+    if x != 50: change(rows[bval][aval-1])
+    if x != xcords[-1]: change(rows[bval][aval+1])
+
+def random_color(randomc): return random.choice((BLACK, WHITE)) if randomc else BLACK        
+
                
 # Object class 
 class ClickableSprite(pygame.sprite.Sprite):
@@ -96,16 +95,11 @@ class ClickableSprite(pygame.sprite.Sprite):
                     x = self.rect.x
                     y = self.rect.y
                     
-                    if y == 50: self_neighbor(x, rows[0]) # top row
-                    if y == 100: self_neighbor(x, rows[1]) # mid row   
-                    if y == 150: self_neighbor(x, rows[2]) # bottom row 
-                    
-                    # Other buttons
-                    if x == 50 and y == 250: game(True) # Random 
-                    if x == 50 and y == 300: game(False) # Normal
-                    if x == 50 and y == 200: return True # Menu
-                    
-                    if x == 150 and y == 200: # Reset
+                    if x in xcords: self_neighbor(x,y) # Game buttons
+                    if x == 49 and y == 250: game(True) # Random 
+                    if x == 49 and y == 300: game(False) # Normal
+                    if x == 51 and y == ycords[-1]+50: return True # Menu
+                    if x == 151 and y == ycords[-1]+50: # Reset
                         menu_exit = False
                         game(norm_rand)
                     
@@ -136,10 +130,10 @@ text_howto = smallfont.render('Click on the tiles untill they are all white.' , 
 
 # sprites stuff
 win_sprite = pygame.sprite.Group(ClickableSprite(pygame.Surface((140, 40)), 150, 250, BLACK)) # You Win!
-sprrandom = ClickableSprite(pygame.Surface((100, 40)), 50, 250, BLACK) # random
-sprnorm = ClickableSprite(pygame.Surface((100, 40)), 50, 300, BLACK) # normal
-sprmenu = ClickableSprite(pygame.Surface((90, 40)), 50, 200, BLACK) # menu
-sprreset = ClickableSprite(pygame.Surface((90, 40)), 150, 200, BLACK) # reset
+sprrandom = ClickableSprite(pygame.Surface((100, 40)), 49, 250, BLACK) # random
+sprnorm = ClickableSprite(pygame.Surface((100, 40)), 49, 300, BLACK) # normal
+sprmenu = ClickableSprite(pygame.Surface((88, 40)), 51, 200, BLACK) # menu
+sprreset = ClickableSprite(pygame.Surface((88, 40)), 151, 200, BLACK) # reset
 sprites_list = pygame.sprite.Group(sprrandom, sprnorm)
 
 # Game sprites
@@ -149,10 +143,9 @@ def sprrows(row, true_or_false):
 
 # game something
 def game(true_or_false):
-    global norm_rand # <--this is part of Reset
-    norm_rand = true_or_false 
-    
-    global rows
+    global norm_rand, rows
+    norm_rand = true_or_false # <--this is part of Reset
+
     rows = [(sprrows(row, true_or_false)) for row in range(3)]
     run_game(pygame.sprite.Group(rows, sprmenu, sprreset))
 

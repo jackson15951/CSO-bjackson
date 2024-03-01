@@ -1,4 +1,3 @@
-import time
 import pygame
 import random 
 import pathlib
@@ -27,10 +26,7 @@ def expand_cords(cols,row): # Expand the board
 
 def run_game(row_group):
     # Allows you to exit the game
-    global xcords, ycords, menu_exit, exit, clicks
-    clicks = 0
-    start = time.time()
-    end = time.time()
+    global xcords, ycords, menu_exit, exit
     screen = pygame.display.set_mode((xcords[-1]+90, ycords[-1]+180))
     menu_exit = True 
     while menu_exit:                
@@ -39,7 +35,7 @@ def run_game(row_group):
             if event.type == pygame.QUIT:
                 menu_exit = False
                 exit = False
-
+        
         # Updates sprites and checks win condition
         did_win = False
         for i in list(row_group):
@@ -53,25 +49,14 @@ def run_game(row_group):
         # Draws sprites and screen
         screen.fill(SURFACE_COLOR) 
         row_group.draw(screen)
-        screen.blit(text_menu , (70, ycords[-1]+60)) # Menu
-        screen.blit(text_reset , (172, ycords[-1]+60)) # Reset
-        screen.blit(text_size , (272, ycords[-1]+60)) # Size
-        
-        # text stuff
-        text_clicks = smallfont.render('Clicks: %s' %clicks, True , WHITE) # Clicks
-        text_time = smallfont.render('Time: %ss' %int(end - start), True , BLACK) # Timer
-        screen.blit(text_clicks , (60, ycords[-1]+110)) # Clicks
-        screen.blit(text_time , (50, 20)) # Timer
-        
+        screen.blit(text_menu , (70, ycords[-1]+60))
+        screen.blit(text_reset , (172, ycords[-1]+60)) 
+        screen.blit(text_size , (272, ycords[-1]+60))
+
         # if won, informs the player
         if did_win:
             win_sprite.draw(screen)
-            screen.blit(text_win , (160, ycords[-1]+110))
-            pygame.display.update()
-            time.sleep(3)
-            menu_exit = False
-            game(norm_rand)
-        else: end = time.time()
+            screen.blit(text_win , (160, ycords[-1]+110)) 
         
         # Updates screen
         pygame.display.update()
@@ -85,13 +70,12 @@ def win(group):
     # if all sprites are white you won
     global contwin 
     if group == WHITE:
-        if contwin < (len(xcords)*len(ycords)): contwin = contwin + 1
-        if contwin == (len(xcords)*len(ycords)): return True
+        if contwin < (xsize*ysize): contwin = contwin + 1
+        if contwin == (xsize*ysize): return True
     else: contwin = 0
 
 def self_neighbor(x,y): # Changes the colors of its self and its neighbors
-    global rows, clicks
-    clicks = clicks + 1
+    global rows
     aval = xcords.index(x)
     bval = ycords.index(y)
     change(rows[bval][aval]) # its self
@@ -151,7 +135,7 @@ screen = pygame.display.set_mode((440, 450))
 pygame.display.set_caption("Game Thing")
 
 path = pathlib.Path(__file__).parent.resolve()
-win_img = pygame.image.load('%s/how_to.png' %path)
+win_img = pygame.image.load('%s/win_img.png' %path)
 win_img = pygame.transform.scale(win_img, (360,150))
 
 # defining a font  
@@ -178,13 +162,12 @@ def game(true_or_false):
     norm_rand = true_or_false # <--this is part of Reset
     
     sprmenu = ClickableSprite(pygame.Surface((88, 40)), 51, ycords[-1]+50, BLACK) # menu
-    sprclicks = ClickableSprite(pygame.Surface((108, 40)), 51, ycords[-1]+100, BLACK) # clicks
     sprreset = ClickableSprite(pygame.Surface((88, 40)), 151, ycords[-1]+50, BLACK) # reset
     sprexpand = ClickableSprite(pygame.Surface((88, 40)), 251, ycords[-1]+50, BLACK) # expand
     win_sprite = pygame.sprite.Group(ClickableSprite(pygame.Surface((140, 40)), 150, ycords[-1]+100, BLACK)) # You Win!
 
     rows = [([ClickableSprite(pygame.Surface((40, 40)), xcords[num], ycords[row], (random_color(true_or_false))) for num in range(len(xcords))]) for row in range(len(ycords))]
-    run_game(pygame.sprite.Group(rows, sprmenu, sprreset, sprexpand, sprclicks))
+    run_game(pygame.sprite.Group(rows, sprmenu, sprreset, sprexpand))
 
 def main():
     expand_cords(xsize,ysize) # Expand the board
