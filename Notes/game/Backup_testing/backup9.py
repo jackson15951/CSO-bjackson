@@ -17,7 +17,8 @@ xsize = 7
 ysize = 6
 x_start = 1
 y_start = 1
-did_win, modepuzzle, click_loss, timed_loss, oprandom, opclicks, opmono, optimed, oppuzzle, justin = False, False, False, False, False, False, False, False, False, False 
+justin = False
+did_win, modepuzzle, click_loss, timed_loss, oprandom, opclicks, opmono, optimed, oppuzzle = False, False, False, False, False, False, False, False, False 
 
 # Functions
 def set_custom_size(x_set, bigger_smaller): 
@@ -27,8 +28,8 @@ def set_custom_size(x_set, bigger_smaller):
     if oppuzzle: customx_size, customy_size = (7, 3)
 
 def menu_button():
-    global game_exit, level_exit, screen, oprandom, optimed, opclicks, opmono, oppuzzle, justin
-    oprandom, optimed, opclicks, opmono, oppuzzle, game_exit, level_exit, justin = False, False, False, False, False, False, False, False
+    global game_exit, level_exit, screen, oprandom, optimed, opclicks, opmono, oppuzzle
+    oprandom, optimed, opclicks, opmono, oppuzzle, game_exit, level_exit = False, False, False, False, False, False, False
     pygame.display.set_caption("Game Thing")
     screen = pygame.display.set_mode((440, 500))
     expand_cords(xsize,ysize)
@@ -53,7 +54,8 @@ def puzzle(puzzle):
 def run_quit(events):
     global exit, level_exit, game_exit
     for event in events: 
-        if event.type == pygame.QUIT: level_exit, game_exit, exit = False, False, False
+        if event.type == pygame.QUIT:
+            level_exit, game_exit, exit = False, False, False
 
 def screen_size(): 
     global screen, copy_size 
@@ -68,7 +70,7 @@ def expand_cords(cols,row): # Expand the board
     for i in range(row): ycords.append(i * 50 + 50)
 
 def level_custom(custom_mode):
-    global exit, level_exit, game_exit, oprandom, optimed, opclicks, justin, level_what, optcustom, x_start, y_start
+    global exit, level_exit, game_exit, oprandom, optimed, opclicks, level_what, optcustom, x_start, y_start
     # Sprites Custom
     sprcords = ((49, 50),(47, 150), (47, 250), (157, 250), (267, 250), (47, 300), (157, 300), (267, 300), (47, 350), (157, 350), (267, 350), (47, 400), (157, 400), (267, 400)) # timed, random, max-clicks
     sprites_custom = [ClickableSprite(pygame.Surface((100, 40)), cord[0], cord[1], BLACK) for cord in list(sprcords)]
@@ -89,7 +91,6 @@ def level_custom(custom_mode):
             text_play = smallfont.render('Play Game' , True , WHITE)
             text_mono = smallfont.render('Mono' , True , (0, 255, 0))
             text_puzzle = smallfont.render('Puzzle' , True , (0, 255, 0))
-            text_justin = smallfont.render('JUSTIN' , True , (0, 255, 0))
             text_timed = smallfont.render('Timed' , True , (0, 255, 0))
             text_random = smallfont.render('Random' , True , (0, 255, 0))
             text_maxclicks = smallfont.render('Max Clicks' , True , (0, 255, 0))
@@ -98,21 +99,34 @@ def level_custom(custom_mode):
             text_in = smallfont.render('>>>>>>>' , True , WHITE)
             text_de = smallfont.render('<<<<<<<' , True , WHITE)
             
-            screen.blit(text_play , (53,160)), screen.blit(text_timed , (70,260)), screen.blit(text_random , (173,260))
-            screen.blit(text_maxclicks , (273,260)), screen.blit(text_mono , (70,310)), screen.blit(text_puzzle , (173,310))
-            screen.blit(text_justin , (283,310)), screen.blit(text_de , (60,360)), screen.blit(text_xsize , (168,360))
-            screen.blit(text_in , (280,360)), screen.blit(text_de , (60,410)), screen.blit(text_ysize , (168,410))
+            screen.blit(text_play , (53,160))
+            screen.blit(text_timed , (70,260))
+            screen.blit(text_random , (173,260))
+            screen.blit(text_maxclicks , (273,260))
+            screen.blit(text_mono , (70,310))
+            screen.blit(text_puzzle , (173,310))
+            screen.blit(text_de , (60,360))
+            screen.blit(text_xsize , (168,360))
+            screen.blit(text_in , (280,360))
+            screen.blit(text_de , (60,410))
+            screen.blit(text_ysize , (168,410))
             screen.blit(text_in , (280,410))
  
         else: 
-            oprandom, optimed, opclicks, justin = False, False, False, False
+            oprandom = False
+            optimed = False
+            opclicks = False
             x, y = level_what
             x_nums = int((x - 49)/ 110 +1)
             y_nums = int((y - 150)/ 60 +1)
                 
             if y_nums > y_start-1 and x_nums > x_start-1: x_start = x_nums
-            if y_nums > y_start: y_start, x_start = y_nums, x_nums
-            y_nums, x_nums = y_start, x_start
+            if y_nums > y_start:
+                y_start = y_nums
+                x_start = x_nums
+
+            y_nums = y_start
+            x_nums = x_start
             
             sprback = ClickableSprite(pygame.Surface((100, 40)), 49, 50, BLACK)
             spr_menu = ClickableSprite(pygame.Surface((100, 40)), 270, 50, BLACK)
@@ -133,8 +147,8 @@ def level_custom(custom_mode):
         pygame.display.update()
     
 def run_game(row_group):
-    global xcords, ycords, game_exit, exit, level_exit, clicks, end, start, screen, click_loss, timed_loss, did_win, next_level, justin, contwin
-    click_loss, timed_loss, did_win = False , False , False
+    global xcords, ycords, game_exit, exit, level_exit, clicks, end, start, screen, click_loss, timed_loss, did_win, next_level, justin
+    click_loss, timed_loss = False , False
     win_check = 0
     clicks = 0
     start = time.time()
@@ -143,16 +157,14 @@ def run_game(row_group):
     while game_exit:              
         events = pygame.event.get()
         run_quit(events) # Allows you to exit the game
-
-        # Updates sprites and checks win condition
-        row_group[1].update(events)
-        contwin = 0
-        for i in list(row_group[0]):
-            if win(i.update(events)):  win_check = win_check + 1
-            elif contwin == 0 and (not modepuzzle): win_check = 0
-            if win_check > 5: did_win = True
         
-        time_left = 30 if justin else 10
+        
+        
+        # Updates sprites and checks win condition
+        did_win = False
+        for i in list(row_group):
+            if win(i.update(events)): win_check = win_check + 1
+            if win_check > 2: did_win = True
         
         # text stuff
         text_menu = smallfont.render('Menu' , True , WHITE) # Menu
@@ -162,13 +174,12 @@ def run_game(row_group):
         text_win = smallfont.render('You Won!     Next-->' , True , WHITE) # Win
         text_loss = smallfont.render('You Lose!' , True , WHITE) # loss
         text_clicks = smallfont.render(('%s Clicks' %(len(xcords)*len(ycords)+5 - clicks)) if game_click else ('Clicks: %s' %clicks), True , WHITE) # Clicks
-        text_time = smallfont.render(('Time Left: %ss' %(time_left - int(end - start))) if game_timed else ('Time: %ss' %int(end - start)), True , BLACK) # Timer
+        text_time = smallfont.render(('Time Left: %ss' %(10 - int(end - start))) if game_timed else ('Time: %ss' %int(end - start)), True , BLACK) # Timer
                        
         # Draws sprites, screen, and text
         screen.fill(SURFACE_COLOR) 
-        row_group[0].draw(screen)
-        row_group[1].draw(screen)
-        if justin and not int(end - start) % 8 == 0 and not (did_win or timed_loss or click_loss): pygame.sprite.Group(rows1).draw(screen)
+        row_group.draw(screen)
+        if justin: pygame.sprite.Group(rows1).draw(screen)
         if optcustom: screen.blit(text_back , (60, ycords[-1]+60)) # Back
         else: screen.blit(text_levels , (68, ycords[-1]+60)) # Levels
         screen.blit(text_reset , (172, ycords[-1]+60)) # Reset
@@ -178,18 +189,22 @@ def run_game(row_group):
         
         if modepuzzle: puzz_copy.draw(screen)
         
+        #did_win = True ############
         # if won or losed, informs the player, else updates timer
         if game_click == True: click_loss = clicks > len(xcords)*len(ycords)+5
-        if game_timed == True: timed_loss = int(end - start) == time_left 
+        if game_timed == True: timed_loss = int(end - start) == 10 
 
         if timed_loss or click_loss:
-            win_lose_sprite.draw(screen), screen.blit(text_loss , (190, ycords[-1]+110))
+            win_lose_sprite.draw(screen)
+            screen.blit(text_loss , (190, ycords[-1]+110))
         
         elif did_win:
-            win_lose_sprite.draw(screen), screen.blit(text_win , (190, ycords[-1]+110))
+            win_lose_sprite.draw(screen)
+            screen.blit(text_win , (190, ycords[-1]+110))
             win_lose_sprite.update(events)
             next_level = (level_what[0]+110 if level_what[0]+110 != 379 else 49), (level_what[1] if level_what[0]+110 != 379 else level_what[1]+60)
 
+            pygame.display.update()
         else: end = time.time() 
         
         # Updates screen
@@ -200,14 +215,14 @@ def change(sprite): #change color
     sprite.image.fill(color)
 
 def win(group): # if all sprites are white you won
-    global contwin, puzz, modepuzzle, puzz_list 
-    contwin = contwin + 1 if group == WHITE and contwin < (len(xcords)*len(ycords)) else 0
-
-    if not len(puzz) < len(xcords)*len(ycords): puzz = []
-    puzz.append(contwin)    
-
-    if modepuzzle == True: 
-        if puzz == cur_puzz: return True
+    global contwin, puzz, modepuzzle, puzz_list  
+    if group == WHITE and contwin < (len(xcords)*len(ycords)): contwin = contwin + 1
+    else: contwin = 0
+    
+    if not len(puzz) < len(xcords)*len(ycords)+4: puzz = []
+    puzz.append(contwin) 
+    
+    if modepuzzle == True and puzz == cur_puzz: return True
     elif contwin == (len(xcords)*len(ycords)): return True
 
 def self_neighbor(x,y): # Changes the colors of its self and its neighbors
@@ -246,7 +261,7 @@ class ClickableSprite(pygame.sprite.Sprite):
                     # finds self cords
                     x = self.rect.x 
                     y = self.rect.y 
-                    # controls all the buttons in the game
+
                     if x == 180 and y == ycords[-1]+100 and did_win:
                         did_win = False
                         if optcustom: x, y = (47, 150)
@@ -257,13 +272,13 @@ class ClickableSprite(pygame.sprite.Sprite):
                     if x == 270 and y == 50: menu_button() # Menu -->
                     if x == 51 and y == ycords[-1]+50: # Level
                         if optcustom: 
-                            game_exit = False 
-                            expand_cords(xsize,ysize)
-                            pygame.display.set_mode((440, 600))
+                            justin = True if justin == False else False
+                            #game_exit = False 
+                            #pygame.display.set_mode((440, 600))
                         else: level_custom(False)
 
                     if x == 49 and y == 50: # Back
-                        oprandom, optimed, opclicks, opmono, oppuzzle, justin = False, False, False, False, False, False
+                        oprandom, optimed, opclicks, opmono, oppuzzle = False, False, False, False, False
                         level_exit = False
                         screen_size()
                     
@@ -273,7 +288,7 @@ class ClickableSprite(pygame.sprite.Sprite):
                     if x == 151 and y == ycords[-1]+50: # Reset
                         game_exit = False
                         puzz = []
-                        game(norm_rand, game_timed, game_click, game_mono, justin)
+                        game(norm_rand, game_timed, game_click, game_mono)
 
                     if x == 157 and y == 250: # Random
                         oprandom = True if oprandom == False else False 
@@ -294,10 +309,6 @@ class ClickableSprite(pygame.sprite.Sprite):
                     if x == 157 and y == 300: # Puzzle
                         oppuzzle = True if oppuzzle == False else False 
                         change(self), set_custom_size(False, False), set_custom_size(False, True) # Fix this
-                    
-                    if x == 267 and y == 300: # justin
-                        justin = True if justin == False else False
-                        change(self)
                         
                     if x == 47 and y == 350: set_custom_size(True, False)
                     if x == 267 and y == 350: set_custom_size(True, True)
@@ -305,31 +316,31 @@ class ClickableSprite(pygame.sprite.Sprite):
                     if x == 47 and y == 400: set_custom_size(False, False)
                     if x == 267 and y == 400: set_custom_size(False, True)
                     
-                    if x == 47 and y == 150: expand_cords(customx_size, customy_size), puzzle(oppuzzle), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # custom level
-                    if x == 49 and y == 150: what_level(x,y), expand_cords(2,2), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-1 yes
-                    if x == 159 and y == 150: what_level(x,y), expand_cords(3,2), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-2 yes
-                    if x == 269 and y == 150: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-3 yes
-                    if x == 49 and y == 210: what_level(x,y), expand_cords(4,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-4 yes
-                    if x == 159 and y == 210: what_level(x,y), expand_cords(7,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-5
-                    if x == 269 and y == 210: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-6
-                    if x == 49 and y == 270: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-7
-                    if x == 159 and y == 270: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono, justin) # level-8
-                    if x == 269 and y == 270: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(True, optimed, opclicks, opmono, justin) # level-9
-                    if x == 49 and y == 330: what_level(x,y),  expand_cords(7,3), puzzle(False), screen_size(), game(True, optimed, opclicks, opmono, justin) # level-10
-                    if x == 159 and y == 330: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(True, optimed, True, opmono, justin) # level-11 
-                    if x == 269 and y == 330: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(oprandom, True, opclicks, True, justin) # level-12
-                    if x == 49 and y == 390: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, True, opclicks, True, justin) # level-13
-                    if x == 159 and y == 390: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, opclicks, True, justin) # level-14
-                    if x == 269 and y == 390: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, opclicks, True, justin) # level-15
-                    if x == 49 and y == 450: what_level(x,y), expand_cords(7,3), puzzle(False), screen_size(), game(True, True, opclicks, opmono, justin) # level-16
-                    if x == 159 and y == 450: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, opclicks, True, True) # level-17
-                    if x == 269 and y == 450: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, True, opclicks, opmono, True) # level-18
-                    if x == 49 and y == 510: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, True, True, True) # level-19
-                    if x == 159 and y == 510: what_level(x,y), expand_cords(7,3), puzzle(False), screen_size(), game(True, True, True, opmono, True) # level-20
-                    if x == 269 and y == 510: what_level(x,y), expand_cords(7,6), puzzle(False), screen_size(), game(True, optimed, True, opmono, True) # level-21
+                    if x == 47 and y == 150: expand_cords(customx_size, customy_size), puzzle(oppuzzle), screen_size(), game(oprandom, optimed, opclicks, opmono) # custom level
+                    if x == 49 and y == 150: what_level(x,y), expand_cords(2,2), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-1 yes
+                    if x == 159 and y == 150: what_level(x,y), expand_cords(3,2), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-2 yes
+                    if x == 269 and y == 150: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-3 yes
+                    if x == 49 and y == 210: what_level(x,y), expand_cords(4,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-4 yes
+                    if x == 159 and y == 210: what_level(x,y), expand_cords(5,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-5 yes
+                    if x == 269 and y == 210: what_level(x,y), expand_cords(6,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-6 yes
+                    if x == 49 and y == 270: what_level(x,y), expand_cords(7,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-7 yes
+                    if x == 159 and y == 270: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-8 yes
+                    if x == 269 and y == 270: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-9 yes
+                    if x == 49 and y == 330: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-10 yes
+                    if x == 159 and y == 330: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-11 
+                    if x == 269 and y == 330: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(True, optimed, opclicks, opmono) # level-12 yes
+                    if x == 49 and y == 390: what_level(x,y), expand_cords(4,3), puzzle(False), screen_size(), game(True, optimed, opclicks, opmono) # level-13 yes
+                    if x == 159 and y == 390: what_level(x,y), expand_cords(7,3), puzzle(False), screen_size(), game(True, optimed, opclicks, opmono) # level-14 
+                    if x == 269 and y == 390: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(True, optimed, True, opmono) # level-15 
+                    if x == 49 and y == 450: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(True, optimed, True, opmono) # level-16
+                    if x == 159 and y == 450: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, True) # level-17
+                    if x == 269 and y == 450: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(oprandom, True, opclicks, True) # level-18
+                    if x == 49 and y == 510: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, opclicks, True) # level-19
+                    if x == 159 and y == 510: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, opclicks, True) # level-20
+                    if x == 269 and y == 510: what_level(x,y), expand_cords(7,3), puzzle(True), screen_size(), game(True, True, opclicks, True) # level-21
                     
         # finds and reports it's current color
-        color = self.image.get_at((0, 0))
+        color = self.image.get_at((0, 0)) 
         return color
 
 # init
@@ -360,33 +371,32 @@ sprites_menu = [ClickableSprite(pygame.Surface((100, 40)), cord[0], cord[1], BLA
 sprites_list = pygame.sprite.Group(sprites_menu)
 
 # list of puzzles
-p1 = [0, 1, 0, 0, 0, 1, 0, 0, 1, 2, 3, 4, 5, 0, 0, 1, 0, 0, 0, 1, 0]
-p2 = [1, 0, 0, 1, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 1, 0, 0, 1]
-p3 = [1, 2, 0, 1, 0, 1, 2, 0, 0, 1, 2, 3, 0, 0, 1, 2, 0, 1, 0, 1, 2]
-p4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-p5 = [1, 0, 1, 0, 1, 0, 1, 2, 0, 1, 0, 1, 0, 1, 2, 0, 1, 0, 1, 0, 1]
-p6 = [0, 0, 1, 2, 3, 0, 0, 1, 2, 3, 0, 1, 2, 3, 0, 0, 1, 2, 3, 0, 0]
-p7 = [1, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 2, 3]
-p8 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 2, 3, 0, 0, 1, 0, 0, 1, 0, 0, 1]
-p9 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1]
-p10 = [0, 1, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 2, 0]
-p11 = [0, 1, 2, 0, 1, 2, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0]
-p12 = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-p13 = [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 0]
-p14 = [1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 0, 1, 2, 0, 1, 2, 3, 4, 5, 6, 7]
-p15 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1]
-p16 = [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0]
-p17 = [0, 1, 2, 0, 1, 2, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0]
+p1 = [0, 1, 0, 0, 0, 1, 0, 0, 1, 2, 3, 4, 5, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+p2 = [1, 0, 0, 1, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]
+p3 = [1, 2, 0, 1, 0, 1, 2, 0, 0, 1, 2, 3, 0, 0, 1, 2, 0, 1, 0, 1, 2, 0, 0, 0, 0]
+p4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0, 0]
+p5 = [1, 0, 1, 0, 1, 0, 1, 2, 0, 1, 0, 1, 0, 1, 2, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0]
+p6 = [0, 0, 1, 2, 3, 0, 0, 1, 2, 3, 0, 1, 2, 3, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0]
+p7 = [1, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 0, 0, 0, 0]
+p8 = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 2, 3, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]
+p9 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+p10 = [0, 1, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0]
+p11 = [0, 1, 2, 0, 1, 2, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0, 0, 0, 0, 0]
+p12 = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0]
+p13 = [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
+p14 = [1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 0, 1, 2, 0, 1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0]
+p15 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+p16 = [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+p17 = [0, 1, 2, 0, 1, 2, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0, 0, 0, 0, 0]
 puzz_list = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17)
 
 # Game something
-def game(random_tf, timed, clicks_lim, monomode, justinmode):
-    global norm_rand, sprmenu, sprreset, win_lose_sprite, rows, sprexpand, game_timed, game_click, puzz_copy, game_mono, rows1, justin
+def game(random_tf, timed, clicks_lim, monomode):
+    global norm_rand, sprmenu, sprreset, win_lose_sprite, rows, sprexpand, game_timed, game_click, puzz_copy, game_mono, rows1
     norm_rand = random_tf # <--this is part of Reset
     game_timed = timed
     game_click = clicks_lim
     game_mono = monomode
-    justin = justinmode
     
     sprexpand= ClickableSprite(pygame.Surface((88, 40)), 51, ycords[-1]+50, BLACK) # levels
     sprreset = ClickableSprite(pygame.Surface((88, 40)), 151, ycords[-1]+50, BLACK) # reset
@@ -395,8 +405,8 @@ def game(random_tf, timed, clicks_lim, monomode, justinmode):
     win_lose_sprite = pygame.sprite.Group(ClickableSprite(pygame.Surface((180, 40)), 180, ycords[-1]+100, BLACK)) # You Win! / You Lose!
 
     rows = [([ClickableSprite(pygame.Surface((40, 40)), xcords[num], ycords[row], (random_color(random_tf))) for num in range(len(xcords))]) for row in range(len(ycords))]
-    rows1 = [([ClickableSprite(pygame.Surface((40, 40)), xcords[num], ycords[row], ((50,50,50))) for num in range(len(xcords))]) for row in range(len(ycords))] # Justin
-    run_game((pygame.sprite.Group(rows), pygame.sprite.Group(sprmenu, sprreset, sprexpand, sprclicks)))
+    rows1 = [([ClickableSprite(pygame.Surface((40, 40)), xcords[num], ycords[row], ((50,50,50))) for num in range(len(xcords))]) for row in range(len(ycords))]
+    run_game(pygame.sprite.Group(rows, sprmenu, sprreset, sprexpand, sprclicks))
 
 def main():
     expand_cords(xsize,ysize) # Expand the board
@@ -406,7 +416,7 @@ def main():
     while exit: 
         events = pygame.event.get()
         run_quit(events) # Allows you to exit the game
-        
+
         # Updates and draws sprites and screen
         screen.fill(SURFACE_COLOR) 
         sprites_list.draw(screen)
@@ -423,4 +433,7 @@ def main():
         if exit == False: screen.fill(SURFACE_COLOR)
 
         pygame.display.update() 
+        
 main()
+pygame.quit()
+

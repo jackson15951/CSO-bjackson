@@ -190,6 +190,7 @@ def run_game(row_group):
             win_lose_sprite.update(events)
             next_level = (level_what[0]+110 if level_what[0]+110 != 379 else 49), (level_what[1] if level_what[0]+110 != 379 else level_what[1]+60)
 
+            pygame.display.update()
         else: end = time.time() 
         
         # Updates screen
