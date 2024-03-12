@@ -7,24 +7,14 @@ import pathlib
 SURFACE_COLOR = (100, 100, 255)  
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
-level_what = (49,150)
-puzz = []
 contwin = 0
 copy_size = 0
+puzz = []
 xsize = 7
 ysize = 6
 did_win, modepuzzle, click_loss, timed_loss, oprandom, opclicks, opmono, optimed = False, False, False, False, False, False, False, False 
 
 # Functions
-def menu_button():
-    global game_exit, level_exit, screen, oprandom, optimed, opclicks, opmono
-    oprandom, optimed, opclicks, opmono = False, False, False, False
-    game_exit = False 
-    level_exit = False
-    pygame.display.set_caption("Game Thing")
-    screen = pygame.display.set_mode((440, 500))
-    expand_cords(xsize,ysize)
-        
 def what_level(x,y):
     global level_what 
     level_what = (x,y)
@@ -63,62 +53,43 @@ def expand_cords(cols,row): # Expand the board
     for i in range(row): ycords.append(i * 50 + 50)
 
 def level_custom(custom_mode):
-    global exit, level_exit, game_exit, oprandom, optimed, opclicks, level_what, optcustom
+    global exit, level_exit, game_exit, oprandom, optimed, opclicks
     # Sprites Custom
-    sprcords = ((49, 50),(47, 150), (47, 250), (157, 250), (267, 250), (47, 300), (157, 300), (267, 300)) # timed, random, max-clicks
+    sprcords = ((49, 50),(47, 150), (157, 150), (267, 150), (47, 250), (157, 250), (267, 250)) # timed, random, max-clicks
     sprites_custom = [ClickableSprite(pygame.Surface((100, 40)), cord[0], cord[1], BLACK) for cord in list(sprcords)]
     sprites_level_custom = pygame.sprite.Group(sprites_custom)
     screen = pygame.display.set_mode((440, 600))
-    optcustom = custom_mode
-    x_start = 0
-    y_start = 0
     level_exit = True 
     while level_exit:              
         events = pygame.event.get()
         run_quit(events) # Allows you to exit the game
         
-        # Updates and draws sprites and screen 
+        # Updates and draws sprites and screen (47, 250), (157, 250), (267, 250)
         screen.fill(SURFACE_COLOR)
                
         if custom_mode:
             sprites_level_custom.draw(screen)
             # Text
-            text_play = smallfont.render('Play Game' , True , WHITE)
-            text_mono = smallfont.render('Mono' , True , (0, 255, 0))
             text_timed = smallfont.render('Timed' , True , (0, 255, 0))
             text_random = smallfont.render('Random' , True , (0, 255, 0))
             text_maxclicks = smallfont.render('Max Clicks' , True , (0, 255, 0))
-            screen.blit(text_play , (53,160))
             screen.blit(text_timed , (70,260))
             screen.blit(text_random , (173,260))
             screen.blit(text_maxclicks , (273,260))
-            screen.blit(text_mono , (70,310))
- 
+        #sprites_level = [([ClickableSprite(pygame.Surface((100, 40)), num*110+49, row*60+150, BLACK) for num in range(3)]) for row in range(7)] 
         else: 
             oprandom = False
             optimed = False
             opclicks = False
-            x, y = level_what
-            x_nums = int((x - 49)/ 110 +1)
-            y_nums = int((y - 150)/ 60 +1)
-            print(x_nums,y_nums)
-            #x_start = 0
-            #y_start = 0
-            
-            if y_nums > y_start:
-                y_start = y_nums
-            else: y_nums = y_start
             
             sprback = ClickableSprite(pygame.Surface((100, 40)), 49, 50, BLACK)
-            sprites_level = ([ClickableSprite(pygame.Surface((100, 40)), num*110+49, (y_nums-1)*60+150, BLACK) for num in range(x_nums)])
-            sprites_level2 = [([ClickableSprite(pygame.Surface((100, 40)), num*110+49, row*60+150, BLACK) for num in range(3)]) for row in range(y_nums-1)] 
-            sprites_level_custom = pygame.sprite.Group(sprites_level, sprback, sprites_level2)
+            sprites_level = [([ClickableSprite(pygame.Surface((100, 40)), num*110+49, row*60+150, BLACK) for num in range(3)]) for row in range(7)] 
+            sprites_level_custom = pygame.sprite.Group(sprites_level, sprback)
             sprites_level_custom.draw(screen)
             # Text
-            for num in range(x_nums): screen.blit(smallfont.render('Level-%s' %(3*(y_nums-1)+num+1) , True , WHITE) , (110*num+60, 60*(y_nums-1)+160))
-            for row in range(y_nums-1): 
+            for row in range(7): 
                 for num in range(3): screen.blit(smallfont.render('Level-%s' %(3*row+num+1) , True , WHITE) , (110*num+60, 60*row+160)) 
-
+            
         screen.blit(text_back , (65,60))
         sprites_level_custom.update(events)
         # Updates screen
@@ -142,6 +113,13 @@ def run_game(row_group):
             if win(i.update(events)): win_check = win_check + 1
             if win_check > 2: did_win = True
         
+        if (sprmenu.update(events)) == True:
+            game_exit = False 
+            level_exit = False
+            pygame.display.set_caption("Game Thing")
+            screen = pygame.display.set_mode((440, 500))
+            expand_cords(xsize,ysize)
+        
         # text stuff
         text_menu = smallfont.render('Menu' , True , WHITE) # Menu
         text_reset = smallfont.render('Reset' , True , WHITE) # Reset
@@ -163,7 +141,6 @@ def run_game(row_group):
         
         if modepuzzle: puzz_copy.draw(screen)
         
-        did_win = True ############
         # if won or losed, informs the player, else updates timer
         if game_click == True: click_loss = clicks > len(xcords)*len(ycords)+5
         if game_timed == True: timed_loss = int(end - start) == 10 
@@ -179,6 +156,7 @@ def run_game(row_group):
             next_level = (level_what[0]+110 if level_what[0]+110 != 379 else 49), (level_what[1] if level_what[0]+110 != 379 else level_what[1]+60)
 
             pygame.display.update()
+            
         else: end = time.time() 
         
         # Updates screen
@@ -203,13 +181,12 @@ def win(group):
     
     if modepuzzle == True: 
         if puzz == cur_puzz: return True
-        #print(puzz)
-        #print(cur_puzz)
+        print(puzz)
+        print(cur_puzz)
     elif contwin == (len(xcords)*len(ycords)): return True
 
 def self_neighbor(x,y): # Changes the colors of its self and its neighbors
     global rows, clicks, game_mono
-    game_mono = True
     clicks = clicks + 1
     aval = xcords.index(x)
     bval = ycords.index(y)
@@ -248,17 +225,12 @@ class ClickableSprite(pygame.sprite.Sprite):
                     if x == 180 and y == ycords[-1]+100 and did_win:
                         did_win = False
                         x, y = next_level
+                        print('yes')
                     
                     if x in xcords: self_neighbor(x,y) # Game buttons
-                    if x == 251 and y == ycords[-1]+50: menu_button() # Menu
-                    if x == 51 and y == ycords[-1]+50: # Level
-                        if optcustom: 
-                            game_exit = False 
-                            pygame.display.set_mode((440, 600))
-                        else: level_custom(False)
-
+                    if x == 251 and y == ycords[-1]+50: return True # Menu
+                    if x == 51 and y == ycords[-1]+50: level_custom(False) # Level
                     if x == 49 and y == 50: # Back
-                        oprandom, optimed, opclicks, opmono = False, False, False, False
                         level_exit = False
                         screen_size()
                     
@@ -275,19 +247,14 @@ class ClickableSprite(pygame.sprite.Sprite):
                         oprandom = True if oprandom == False else False 
                         change(self) 
                     
-                    if x == 47 and y == 250: # Timed 47, 300
+                    if x == 47 and y == 250: # Timed
                         optimed = True if optimed == False else False
                         change(self)
                     
-                    if x == 267 and y == 250: # Max clicks 
+                    if x == 267 and y == 250: # Max clicks
                         opclicks = True if opclicks == False else False
                         change(self)
-                        
-                    if x == 47 and y == 300: # Mono 
-                        opmono = True if opmono == False else False
-                        change(self)
                     
-                    if x == 47 and y == 150: expand_cords(7,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) #
                     if x == 49 and y == 150: what_level(x,y), expand_cords(2,2), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-1 yes
                     if x == 159 and y == 150: what_level(x,y), expand_cords(3,2), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-2 yes
                     if x == 269 and y == 150: what_level(x,y), expand_cords(3,3), puzzle(False), screen_size(), game(oprandom, optimed, opclicks, opmono) # level-3 yes
@@ -333,10 +300,11 @@ text_norm = smallfont.render('Normal' , True , WHITE)
 text_howtoplay = smallfont.render('How To Play!' , True , WHITE)
 text_howto = smallfont.render('Click on the tiles untill they are all white.' , True , WHITE)
 text_custom = smallfont.render('Custom' , True , WHITE)
+text_tutorial = smallfont.render('Tutorial' , True , WHITE)
 text_gamemod = smallfont.render('--- Game Modes ---' , True , WHITE)
 
 # Sprites Main Menu
-sprcords = ((48, 250), (158, 250)) # normal, custom
+sprcords = ((48, 250), (158, 250), (268, 250), (48, 350), (158, 350), (268, 350)) # normal, easy, hard, timed, random, max-clicks
 sprites_menu = [ClickableSprite(pygame.Surface((100, 40)), cord[0], cord[1], BLACK) for cord in list(sprcords)]
 sprites_list = pygame.sprite.Group(sprites_menu)
 
@@ -396,7 +364,8 @@ def main():
         screen.blit(text_norm , (67,260)) 
         screen.blit(text_howtoplay , (170,30))
         screen.blit(text_howto , (50,60))
-        screen.blit(text_custom , (174,260))  
+        screen.blit(text_custom , (174,260)) 
+        screen.blit(text_tutorial , (285,260)) 
         screen.blit(text_gamemod , (67,225))
         
         if exit == False: screen.fill(SURFACE_COLOR)

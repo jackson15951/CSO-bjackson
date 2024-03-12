@@ -318,7 +318,7 @@ turtle.colormode(255)
 turtle.color('black')
 
 turtle.penup()
-turtle.setposition(-150,0)
+turtle.setposition(-150,-150)
 turtle.pendown()
 
 
@@ -377,7 +377,7 @@ def s(n, l):
 
 
 
-fac(260)
+#fac(260)
 
 #tri(400)
 
@@ -385,15 +385,15 @@ fac(260)
 
 #squ(160)
 
-s(4, 160)
+#s(4, 160)
 
 #turtle.tracer(1)
 
-'''
+
 while True:
     turtle.color(tuple(random.randint(0, 255) for _ in range(3))) 
     s(4, 160)
     turtle.color('white')
     s(3, 160)
     turtle.clear()
-'''
+

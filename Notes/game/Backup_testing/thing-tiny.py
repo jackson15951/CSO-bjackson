@@ -1,26 +1,20 @@
 import pygame
 
 # VARIABLES
-BLACK = (0, 0, 0) 
-WHITE = (255, 255, 255)
 xcords = [50, 100, 150, 200, 250, 300, 350]
 ycords = [50, 100, 150]
 
 # Functions
-def change(sprite): # Changes color
-    color = BLACK if sprite.image.get_at((0, 0)) != BLACK else WHITE
-    sprite.image.fill(color)
+def change(sprite): sprite.image.fill((0, 0, 0)) if sprite.image.get_at((0, 0)) != (0, 0, 0) else sprite.image.fill((255, 255, 255)) # Changes color
 
 def self_neighbor(x,y): # Changes the colors of its self and its neighbors
-    aval = xcords.index(x)
-    bval = ycords.index(y)
-    change(rows[bval][aval]) # its self
+    change(rows[ycords.index(y)][xcords.index(x)]) # its self
     # Find neighbors on Y axis
-    if y != 50: change(rows[bval-1][aval])
-    if y != 150: change(rows[bval+1][aval])
+    if y != 50: change(rows[ycords.index(y)-1][xcords.index(x)])
+    if y != 150: change(rows[ycords.index(y)+1][xcords.index(x)])
     # Find neighbors on X axis
-    if x != 50: change(rows[bval][aval-1])
-    if x != 350: change(rows[bval][aval+1])
+    if x != 50: change(rows[ycords.index(y)][xcords.index(x)-1])
+    if x != 350: change(rows[ycords.index(y)][xcords.index(x)+1])
 
 # Object class 
 class ClickableSprite(pygame.sprite.Sprite):
@@ -36,18 +30,13 @@ class ClickableSprite(pygame.sprite.Sprite):
         # checks to see if it was clicked
         for event in events:
             if event.type == pygame.MOUSEBUTTONUP:
-                if self.rect.collidepoint(event.pos):
-                    # finds self cords
-                    x = self.rect.x
-                    y = self.rect.y
-
-                    self_neighbor(x,y) # Game buttons
+                if self.rect.collidepoint(event.pos): self_neighbor(self.rect.x,self.rect.y) # Game buttons
 
 pygame.init() 
 screen = pygame.display.set_mode((435, 250)) 
 
 # Sprites
-rows = [([ClickableSprite(pygame.Surface((40, 40)), xcords[num], ycords[row], (BLACK)) for num in range(7)]) for row in range(3)]
+rows = [([ClickableSprite(pygame.Surface((40, 40)), xcords[num], ycords[row], ((0, 0, 0))) for num in range(7)]) for row in range(3)]
 group = pygame.sprite.Group(rows)
 
 def main():
