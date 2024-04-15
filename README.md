@@ -1,6 +1,6 @@
 # CS0-bjackson
 
-| Basic Info | Brandon Jackson|
+| yresutrydsiyrdtfutfouf Basic Info | Brandon Jackson|
 | --- | ---|
 | Course: | CSCI111 - CS1: Foundations of Computer Science |
 | Semester: | Spring 2024 |
