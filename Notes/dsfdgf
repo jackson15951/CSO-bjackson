@@ -1,6 +1,6 @@
 
 import turtle
-
+import math
 import random
 '''
          
@@ -306,13 +306,45 @@ def s(n, l):
 
         # update screen
         turtle.update()
+       
+       
+def star(len , sides):
+    for i in range(sides):
+        turtle.pendown()
+
+        #turtle.forward(len+((2/sides)*270))# 270-9// 220-7 // 110-5
+        turtle.forward(len+((2/sides)*(len/2*sides)))
+        turtle.left((2/sides)*360)
+        turtle.forward(len*(3/sides))
         
+        turtle.penup()
+        turtle.forward(len/3*2)
+    
+    #turtle.forward(len + ((2/sides)*180))# 180-9 // 130-7 // 20-5
+    turtle.forward(len+((2/sides)*(len/2*sides))-len*(3/sides))
+    #turtle.forward(len*(3/sides))
+    turtle.left((1/sides)*360)
+    
+    for i in range(sides):
+        turtle.pendown()
+        
+        #turtle.forward(len+((2/sides)*250))# 250-9 // 260-7 // 300-5
+        turtle.forward(len*2+((len/3*sides)))
+        turtle.left((2/sides)*360)
+        turtle.forward(len/3*2+((2/sides)*(len*sides)))# 110-9 // 40-7 // 320-170-5
+        #turtle.forward(len*(3/sides)*3)
+        
+        turtle.penup()
+        turtle.forward(len/3*2)       
+
+
+ 
 ''' 
 
        
 #turtle.speed(10)
 
-turtle.tracer(0)
+turtle.tracer(1)
 
 turtle.colormode(255)
 turtle.color('black')
@@ -341,7 +373,7 @@ def tri(len):
             tri(len/2)                                
 
 
-
+'''
 def s(n, l):
     if n == 0: # stop conditions
 
@@ -372,14 +404,209 @@ def s(n, l):
         # update screen
         turtle.update()
 
+'''
+
+def star(len , sides):
+    
+    for i in range(sides):
+        turtle.pendown()
+
+        turtle.forward(len*sides/4)
+        turtle.left((2/sides)*360)
+
+        
+        turtle.forward(len/sides)
+        turtle.penup()
+        turtle.forward(len/2)
+    
+    turtle.forward(len*sides/4)
+    turtle.left((1/2)*360)
+    turtle.forward(len/3)
+    turtle.left((1/2)*360)
+    turtle.left((1/sides)*360)
+    
+    turtle.tracer(1)
+    turtle.pendown()
+    #part 3
+    for i in range(sides):
+        turtle.pendown()
+        turtle.forward(len*sides/2)
+        turtle.left((2/sides)*360)
+        turtle.forward(len)
+
+        turtle.penup()
+        turtle.forward(len/2)
+
+def star2(len , sides):
+    
+    for i in range(sides):
+        turtle.pendown()
+
+        turtle.forward(len*2)
+        turtle.left((2/sides)*360)
+        turtle.forward(4*len/5)
+        
+        turtle.penup()
+        turtle.forward(len/2)
+    
+    turtle.forward(len + len/4)
+    turtle.left((1/sides)*360)
+    
+    turtle.tracer(1)
+    turtle.pendown()
+    #part 3
+    for i in range(sides):
+        turtle.pendown()
+        
+        turtle.forward(len*3.3)
+        turtle.left((2/sides)*360)
+        turtle.forward(len*2.333)
+        
+        turtle.penup()
+        turtle.forward(len/2)
+        
+        
+    for i in range(sides):
+        turtle.pendown()
+        
+        turtle.forward(len*2.15)
+        turtle.left((2/sides)*360)
+        turtle.forward(len*1.2)
+        
+        turtle.penup()
+        turtle.forward(len/2)
 
 
+
+
+def star3(len , sides):
+    
+    for i in range(sides):
+        turtle.pendown()
+
+        turtle.forward(len+((2/sides)*170))# 220-7 // 120-5
+        turtle.left((2/sides)*360)
+        turtle.forward(len*(3/sides))
+        
+        turtle.penup()
+        turtle.forward(len/2)
+    
+    turtle.forward(len)# 130-7 // 30-5
+    turtle.left((1/sides)*360)
+    
+    for i in range(sides):
+        turtle.pendown()
+
+        turtle.forward(len+((2/sides)*170))# 220-7 // 120-5
+        turtle.left((2/sides)*360)
+        turtle.forward(len*(3/sides))
+        
+        turtle.penup()
+        turtle.forward(len/2)
+    
+    #part 2
+    turtle.forward(len)
+    turtle.left((1/sides)*360)
+    turtle.forward(len + ((2/sides)*80))# 130-7 // 30-5
+    turtle.left((1/sides)*360)
+    
+    for i in range(sides):
+        turtle.pendown()
+        
+
+        turtle.forward(len+((2/sides)*260))# 260-7 // 320-5
+        turtle.left((2/sides)*360)
+        turtle.forward(len+((2/sides)*80))# 40-7 // 190-5
+        
+        turtle.penup()
+        turtle.forward(len/2)
+    
+    turtle.forward(len)# 130-7 // 30-5
+    turtle.left((1/sides)*360) 
+    turtle.forward(len/2)
+       
+    for i in range(sides):
+        turtle.pendown()
+        
+        turtle.forward(len+((2/sides)*260))# 260-7 // 320-5
+        turtle.left((2/sides)*360)
+        turtle.forward(len+((2/sides)*80))# 40-7 // 190-5
+        
+        turtle.penup()
+        turtle.forward(len/2)
+
+#import turtle
+
+        
+def star4(len , sides):
+    for i in range(sides):
+        turtle.pendown()
+
+        #turtle.forward(len+((2/sides)*(40*(sides)-83)))# 350-11 // 280-9 // 220-7 // 110-5
+        turtle.forward(len+((2/sides)*((0.2*(sides)**2) + (35*(sides)) + (-50))))# 11-330 // 9-240 // 7-204 // 5-115
+        turtle.left((2/sides)*360)
+        turtle.forward(len*(3/sides))
+        
+        turtle.penup()
+        turtle.forward(len/2)
+    
+    #turtle.forward(len + ((2/sides)*130))# 180-9 // 130-7 // 20-5
+    #turtle.forward(len+((2/sides)*(40*(sides)-83))-len*(3/sides))
+    turtle.forward(len+((2/sides)*((0.2*(sides)**2) + (35*(sides)) + (-50)))-len*(3/sides))
+    #turtle.forward(len*(3/sides))
+    turtle.left((1/sides)*360)
+    
+    for i in range(sides):
+        turtle.pendown()
+        
+        turtle.forward(len+((2/sides)*(6.1*sides**2 + (-105.3*(sides)) + 684)))# 11-275 // 9-252 // 7-242 // 5-318
+        
+        #turtle.forward(len+((2/sides)*(len/2*sides))+len/6)# 250-9 // 260-7 // 300-5
+        turtle.left((2/sides)*360)
+        turtle.forward(len*(3/sides)+((2/sides)*194))# 11-186-194 // 9-135-159 // 7-146-158 // 5-240-244
+        
+        #turtle.forward(len*(3/sides)*3)# 110-9 // 160-7 // 320-170-5
+        
+        turtle.penup()
+        turtle.forward(len/2)
+        
+
+
+        
+        
+
+#star4(60, 11)
+
+
+
+def star5(len, sides): # first star
+    for i in range(sides):
+        turtle.pendown()
+        turtle.forward(len / (1.85 * math.cos(math.radians((1/sides)*360)))) # 5-1.6 // 7-2.2
+        turtle.left((2/sides)*360)
+        turtle.forward(len*(3/sides))
+        turtle.penup()
+        turtle.forward(len/2)
+
+    turtle.forward((len / (1.85 * math.cos(math.radians((1/sides)*360))))-len*(3/sides)) # 5-1.7 // 2.13
+    turtle.left((1/sides)*360)
+
+    for i in range(sides): # second star
+        turtle.pendown()
+        turtle.forward(len / (1.07 * math.cos(math.radians((1/sides)*360)))) # 5-2.9 // 7-2.39
+        turtle.left((2/sides)*360)
+        turtle.forward((len*3.05)*(3/sides) + len/3)  # 5-2.9 // 7-2.39
+        turtle.penup()
+        turtle.forward(len/2)
+
+# Adjust parameters as needed
+star5(60, 5)
 
 
 
 #fac(260)
 
-#tri(400)
+#tri(550)
 
 #squ(480)
 
@@ -387,13 +614,16 @@ def s(n, l):
 
 #s(4, 160)
 
-#turtle.tracer(1)
+turtle.tracer(1)
 
 
 while True:
+    turtle.forward(1)
+    turtle.forward(1)
+    '''
     turtle.color(tuple(random.randint(0, 255) for _ in range(3))) 
     s(4, 160)
     turtle.color('white')
     s(3, 160)
-    turtle.clear()
+    turtle.clear()'''
 

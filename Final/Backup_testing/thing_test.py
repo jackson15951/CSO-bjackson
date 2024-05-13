@@ -178,12 +178,12 @@ def run_game(row_group):
         
         if modepuzzle: puzz_copy.draw(screen)
         
+        #did_win = True
         # if won or losed, informs the player, else updates timer
         if game_click == True: click_loss = clicks > len(xcords)*len(ycords)+5
         if game_timed == True: timed_loss = int(end - start) == time_left 
 
-        if timed_loss or click_loss:
-            win_lose_sprite.draw(screen), screen.blit(text_loss , (190, ycords[-1]+110))
+        if timed_loss or click_loss: win_lose_sprite.draw(screen), screen.blit(text_loss , (190, ycords[-1]+110))
         
         elif did_win:
             win_lose_sprite.draw(screen), screen.blit(text_win , (190, ycords[-1]+110))
@@ -192,7 +192,6 @@ def run_game(row_group):
 
         else: end = time.time() 
         
-        # Updates screen
         pygame.display.update()
 
 def change(sprite): #change color
