@@ -75,3 +75,11 @@ ________________________________________________________________________________
 | met all the requirements | solution accepted |
 | wrote and tested 3 test cases as the requirement asked | screenshot is in the file |
 | self grade: 90% | |
+
+## 7 - Simon Says
+| stuff | more stuff |
+| --- | --- | 
+| Kattis Problem - Simon Says | |
+| met all the requirements | solution accepted |
+| wrote and tested 3 test cases as the requirement asked | screenshot is in the file |
+| self grade: 90% | |
