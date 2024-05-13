@@ -67,3 +67,11 @@ ________________________________________________________________________________
 | met all the requirements | |
 | ran and tested the program many times | |
 | self grade: 90% | |
+
+## 6 - String - Avion
+| stuff | more stuff |
+| --- | --- | 
+| Avian String Problem | |
+| met all the requirements | solution accepted |
+| wrote and tested 3 test cases as the requirement asked | screenshot is in the file |
+| self grade: 90% | |
