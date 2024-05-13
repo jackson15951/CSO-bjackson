@@ -43,3 +43,27 @@ ________________________________________________________________________________
 | met all the requirements | |
 | ran and tested the program many times | |
 | Give me a 100%! | |
+
+## 3 - Functions
+| stuff | more stuff |
+| --- | --- | 
+| A Basic Calculator using Functions | |
+| met all the requirements | |
+| ran and tested the program many times | |
+| self grade: 90% | |
+
+## 4 - Conditionals
+| stuff | more stuff |
+| --- | --- | 
+| program that computes certain values | |
+| met all the requirements | |
+| ran and tested the program many times | |
+| self grade: 90% | |
+
+## 5 - Loop - Guess the Number
+| stuff | more stuff |
+| --- | --- | 
+| A guess the number game | |
+| met all the requirements | |
+| ran and tested the program many times | |
+| self grade: 90% | |
