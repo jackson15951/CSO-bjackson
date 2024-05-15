@@ -53,6 +53,15 @@ ________________________________________________________________________________
 | Location: | https://github.com/jackson15951/CSO-bjackson/Labs/lists |
 | Notes: | I'm done |
 
+## Lab 8 - Dictionaries
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "Working with Python dictionary (dict) data structure." |
+| Due Date: | 4/10/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/dict |
+| Notes: | I'm done |
 _______________________________________________________________________________________________________________
 
 # Assignments
