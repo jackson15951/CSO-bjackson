@@ -33,6 +33,26 @@ ________________________________________________________________________________
 | Location: | https://github.com/jackson15951/CSO-bjackson/Labs/stdio/ascii/math/main.py |
 | Notes: | I'm done |
 
+## Lab 6 - String
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "Working with String Data" |
+| Due Date: | 3/14/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/strings |
+| Notes: | I'm done |
+
+## Lab 7 - Lists
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "Working with Lists" |
+| Due Date: | 3/24/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/lists |
+| Notes: | I'm done |
+
 _______________________________________________________________________________________________________________
 
 # Assignments
