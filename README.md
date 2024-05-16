@@ -77,10 +77,20 @@ ________________________________________________________________________________
 | Name | Value |
 | --- | --- |
 | Name: | CSCI 110 Lab |
-| Description: | "lab to explore working with files. find the histogram" |
-| Due Date: | 4/18/24 |
+| Description: | "lab to explore working with files. find the histogram." |
+| Due Date: | 4/25/24 |
 | Status: | Complete |
 | Location: | https://github.com/jackson15951/CSO-bjackson/Labs/fileiO2 |
+| Notes: | I'm done |
+
+## Lab 11 - OOP
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "explore working with class and object oriented programming." |
+| Due Date: | 4/27/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/OOP |
 | Notes: | I'm done |
 _______________________________________________________________________________________________________________
 
