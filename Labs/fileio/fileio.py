@@ -64,13 +64,13 @@ def main():
     printFile.write("Numbers entered:\n")
     printList(printFile, integers)
     # sort numbers
-    sortListInAscendingOrder(integers)
+    integers = sortListInAscendingOrder(integers)
     printFile.write("Numbers sorted in ascending order:\n")
     printList(printFile, integers)
 
     # FIXME5 #fixed#
     # Call sortListInDescendingOrder function
-    sortListInDescendingOrder(integers)
+    integers = sortListInDescendingOrder(integers)
 
     # FIXME6 #fixed#
     # Write the sorted list in descending order to the output file
