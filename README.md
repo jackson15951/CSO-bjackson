@@ -62,6 +62,16 @@ ________________________________________________________________________________
 | Status: | Complete |
 | Location: | https://github.com/jackson15951/CSO-bjackson/Labs/dict |
 | Notes: | I'm done |
+
+## Lab 9 - File IO
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "lab to explore working with files." |
+| Due Date: | 4/18/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/fileio |
+| Notes: | I'm done |
 _______________________________________________________________________________________________________________
 
 # Assignments
