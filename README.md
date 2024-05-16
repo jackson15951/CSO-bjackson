@@ -72,6 +72,16 @@ ________________________________________________________________________________
 | Status: | Complete |
 | Location: | https://github.com/jackson15951/CSO-bjackson/Labs/fileio |
 | Notes: | I'm done |
+
+## Lab 10 - FileIO2
+| Name | Value |
+| --- | --- |
+| Name: | CSCI 110 Lab |
+| Description: | "lab to explore working with files. find the histogram" |
+| Due Date: | 4/18/24 |
+| Status: | Complete |
+| Location: | https://github.com/jackson15951/CSO-bjackson/Labs/fileiO2 |
+| Notes: | I'm done |
 _______________________________________________________________________________________________________________
 
 # Assignments
